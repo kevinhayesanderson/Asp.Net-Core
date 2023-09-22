@@ -42,6 +42,11 @@ namespace CompanyEmployees
 
             _ = app.UseAuthorization();
 
+            app.Run(async httpContext =>
+            {
+                await httpContext.Response.WriteAsync("Hello from the middleware component.");
+            });
+
             _ = app.MapControllers();
 
             app.Run();
