@@ -42,8 +42,16 @@ namespace CompanyEmployees
 
             _ = app.UseAuthorization();
 
+            app.Use(async (httpContext, requestDelegate) =>
+            {
+                Console.WriteLine($"Logic before executing the next delegate in the Use method");
+                await requestDelegate.Invoke();
+                Console.WriteLine($"Logic after executing the next delegate in the Use method");
+            });
+            
             app.Run(async httpContext =>
             {
+                Console.WriteLine($"Writing the response to the client in the Run method");
                 await httpContext.Response.WriteAsync("Hello from the middleware component.");
             });
 
