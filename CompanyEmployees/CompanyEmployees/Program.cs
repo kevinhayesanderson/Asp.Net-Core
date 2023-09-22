@@ -1,5 +1,5 @@
 using CompanyEmployees.Extensions;
-using Microsoft.Extensions.Primitives;
+using NLog;
 
 namespace CompanyEmployees
 {
@@ -9,11 +9,15 @@ namespace CompanyEmployees
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+            LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+
             // Add services to the container.
 
             builder.Services.ConfigureCors();
 
             builder.Services.ConfigureIISIntegration();
+            
+            builder.Services.ConfigureLoggerService();
 
             _ = builder.Services.AddControllers();
 
@@ -43,42 +47,42 @@ namespace CompanyEmployees
 
             _ = app.UseAuthorization();
 
-            _ = app.Use(async (httpContext, requestDelegate) =>
-            {
-                Console.WriteLine($"Logic before executing the next delegate in the Use method");
-                await requestDelegate.Invoke();
-                Console.WriteLine($"Logic after executing the next delegate in the Use method");
-            });
+            ////_ = app.Use(async (httpContext, requestDelegate) =>
+            ////{
+            ////    Console.WriteLine($"Logic before executing the next delegate in the Use method");
+            ////    await requestDelegate.Invoke();
+            ////    Console.WriteLine($"Logic after executing the next delegate in the Use method");
+            ////});
 
-            _ = app.Map("/usingmapbranch", builder =>
-            {
-                _ = builder.Use(async (httpContext, requestDelegate) =>
-                {
-                    Console.WriteLine("Map branch logic in the Use method before the next delegate");
-                    await requestDelegate.Invoke();
-                    Console.WriteLine("Map branch logic in the Use method after the next delegate");
-                });
-                builder.Run(async httpContext =>
-                {
-                    Console.WriteLine($"Map branch response to the client in the Run method");
-                    await httpContext.Response.WriteAsync("Hello from the map branch.");
-                });
-            });
+            ////_ = app.Map("/usingmapbranch", builder =>
+            ////{
+            ////    _ = builder.Use(async (httpContext, requestDelegate) =>
+            ////    {
+            ////        Console.WriteLine("Map branch logic in the Use method before the next delegate");
+            ////        await requestDelegate.Invoke();
+            ////        Console.WriteLine("Map branch logic in the Use method after the next delegate");
+            ////    });
+            ////    builder.Run(async httpContext =>
+            ////    {
+            ////        Console.WriteLine($"Map branch response to the client in the Run method");
+            ////        await httpContext.Response.WriteAsync("Hello from the map branch.");
+            ////    });
+            ////});
 
-            _ = app.MapWhen(httpContext => httpContext.Request.Query.ContainsKey("testquerystring"), builder =>
-                {
-                    builder.Run(async httpContext =>
-                    {
-                        if(httpContext.Request.Query.TryGetValue("testquerystring", out StringValues value))
-                            await httpContext.Response.WriteAsync($"Hello from the MapWhen branch. {value}");
-                    });
-                });
+            ////_ = app.MapWhen(httpContext => httpContext.Request.Query.ContainsKey("testquerystring"), builder =>
+            ////    {
+            ////        builder.Run(async httpContext =>
+            ////        {
+            ////            if(httpContext.Request.Query.TryGetValue("testquerystring", out StringValues value))
+            ////                await httpContext.Response.WriteAsync($"Hello from the MapWhen branch. {value}");
+            ////        });
+            ////    });
 
-            app.Run(async httpContext =>
-            {
-                Console.WriteLine($"Writing the response to the client in the Run method");
-                await httpContext.Response.WriteAsync("Hello from the middleware component.");
-            });
+            ////app.Run(async httpContext =>
+            ////{
+            ////    Console.WriteLine($"Writing the response to the client in the Run method");
+            ////    await httpContext.Response.WriteAsync("Hello from the middleware component.");
+            ////});
 
             _ = app.MapControllers();
 

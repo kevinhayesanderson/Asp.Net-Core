@@ -1,5 +1,8 @@
 ﻿// Ignore Spelling: Cors
 
+using Contracts;
+using LoggerService;
+
 namespace CompanyEmployees.Extensions
 {
     public static class ServiceExtensions
@@ -24,6 +27,11 @@ namespace CompanyEmployees.Extensions
             {
 
             });
+        }
+
+        public static void ConfigureLoggerService(this IServiceCollection services)
+        {
+            _ = services.AddSingleton<ILoggerManager, LoggerManager>();
         }
     }
 }
