@@ -1,0 +1,25 @@
+version: '3.0'
+services:
+   db:
+     image: mcr.microsoft.com/mssql/server:2019-latest
+     ports:
+       - "1433:1433"
+     environment:
+       - ACCEPT_EULA=Y
+       - SA_PASSWORD=AwesomePass_1234
+     restart: always
+   companyemployees:
+     depends_on:
+       - db
+     image: codemazeblog/companyemployees:runtime
+     build:
+       context: .
+     ports:
+       - "8080:5000"
+       - "8081:5001"
+     environment:
+       - ASPNETCORE_Kestrel__Certificates__Default__Password=awesomepass
+       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/companyemployees.pfx
+       - SECRET=CodeMazeSecretKey1234
+     volumes: 
+       - ${USERPROFILE}/.aspnet/https:/https/ 

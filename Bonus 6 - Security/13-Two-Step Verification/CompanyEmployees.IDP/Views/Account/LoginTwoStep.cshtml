@@ -1,0 +1,21 @@
+﻿@model CompanyEmployees.IDP.Entities.ViewModels.TwoStepModel
+
+<h2>LoginTwoStep</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="LoginTwoStep" asp-all-route-data="(Dictionary<string, string>)@ViewData["RouteData"]">
+            <partial name="_ValidationSummary" />
+            <div class="form-group">
+                <label asp-for="TwoFactorCode" class="control-label"></label>
+                <input asp-for="TwoFactorCode" class="form-control" />
+                <span asp-validation-for="TwoFactorCode" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="RememberLogin" />
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,3390 @@
+{
+	"info": {
+		"_postman_id": "2206e277-0340-4a06-a90d-4e998f4d58e5",
+		"name": "CompanyEmployeesRequests",
+		"description": "A request collection for the ComapnyEmployees project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "04-Handling GET Requests",
+			"item": [
+				{
+					"name": "Get Companies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "06-Getting Additional Resources",
+			"item": [
+				{
+					"name": "Get Company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/3d490a70-94ce-4d15-9494-5248280c2ce3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"3d490a70-94ce-4d15-9494-5248280c2ce3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unexisting Company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/3d490a70-94ce-4d15-9494-5248280c2ce2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"3d490a70-94ce-4d15-9494-5248280c2ce2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Employees per Company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/c9d4c053-49b6-410c-bc78-2d54a9991870/employees",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"c9d4c053-49b6-410c-bc78-2d54a9991870",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Employees for Unexisting Company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/c9d4c053-49b6-410c-bc78-2d54a9991873/employees",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"c9d4c053-49b6-410c-bc78-2d54a9991873",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Employee For Company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/c9d4c053-49b6-410c-bc78-2d54a9991870/employees/86dba8c0-d178-41e7-938c-ed49778fb52a",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"c9d4c053-49b6-410c-bc78-2d54a9991870",
+								"employees",
+								"86dba8c0-d178-41e7-938c-ed49778fb52a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Employee (unexisting) for Company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/c9d4c053-49b6-410c-bc78-2d54a9991870/employees/86dba8c0-d178-41e7-938c-ed49778fb52c",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"c9d4c053-49b6-410c-bc78-2d54a9991870",
+								"employees",
+								"86dba8c0-d178-41e7-938c-ed49778fb52c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Employee for Company (unexisting)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/c9d4c053-49b6-410c-bc78-2d54a9991872/employees/86dba8c0-d178-41e7-938c-ed49778fb52a",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"c9d4c053-49b6-410c-bc78-2d54a9991872",
+								"employees",
+								"86dba8c0-d178-41e7-938c-ed49778fb52a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "07-Content Negotiation",
+			"item": [
+				{
+					"name": "Companies (xml format)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/xml"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Companies (invalid format)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/css"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Companies (csv format)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/csv"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "09-Creating Resources",
+			"item": [
+				{
+					"name": "POST Company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Marketing Solutions Ltd\",\n\t\"address\": \"242 Sunny Avenue, K 334\",\n\t\"country\": \"USA\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Company (null body)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Employee for Company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Martin Geil\",\n\t\"age\": 29,\n\t\"position\": \"Marketing expert\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/14759d51-e9c1-4afc-f9bf-08d98898c9c3/employees",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"14759d51-e9c1-4afc-f9bf-08d98898c9c3",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Company with Employees",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Electronics Solutions Ltd\",\n\t\"address\": \"312 Deliver Street, F 234\",\n\t\"country\": \"USA\",\n\t\"employees\": [\n\t\t{\n\t      \"name\": \"Joan Dane\",\n\t      \"age\": 29,\n\t      \"position\": \"Manager\"\n        },\n        {\n\t      \"name\": \"Martin Geil\",\n\t      \"age\": 29,\n\t      \"position\": \"Administrative\"\n        }\n   ]\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Company collection (null body)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/collection",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Company collection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n  \t\"name\": \"Sales all over the world Ltd\",\n  \t\"address\": \"355 Open Street, B 784\",\n  \t\"country\": \"USA\"\n  }\t,\n  {\n  \t\"name\": \"Branding Ltd\",\n  \t\"address\": \"255 Main Street, K 334\",\n  \t\"country\": \"USA\"\n  }\n]"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/collection",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Company Collection",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/collection/(582ea192-6fb7-44ff-a2a1-08d988ca3ca9,a216fbbe-ebbd-4e09-a2a2-08d988ca3ca9)",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"collection",
+								"(582ea192-6fb7-44ff-a2a1-08d988ca3ca9,a216fbbe-ebbd-4e09-a2a2-08d988ca3ca9)"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "10-Working with DELETE Requests",
+			"item": [
+				{
+					"name": "DELETE Employee for company",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/14759d51-e9c1-4afc-f9bf-08d98898c9c3/employees/e06cfcc6-e353-4bd8-0870-08d988af0956",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"14759d51-e9c1-4afc-f9bf-08d98898c9c3",
+								"employees",
+								"e06cfcc6-e353-4bd8-0870-08d988af0956"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Not Existing Employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/14759d51-e9c1-4afc-f9bf-08d98898c9c3/employees/e06cfcc6-e353-4bd8-0870-08d988af0956",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"14759d51-e9c1-4afc-f9bf-08d98898c9c3",
+								"employees",
+								"e06cfcc6-e353-4bd8-0870-08d988af0956"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Company",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/9b453d25-3c20-4494-9c4c-08d988b17109",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"9b453d25-3c20-4494-9c4c-08d988b17109"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "11-Working with PUT Requests",
+			"item": [
+				{
+					"name": "UPDATE Employee for company",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Sam Raiden\",\n\t\"age\": 25,\n\t\"position\": \"Software developer\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees/80ABBCA8-664D-4B20-B5DE-024705497D4A",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees",
+								"80ABBCA8-664D-4B20-B5DE-024705497D4A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Company with employees",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Admin_Solutions Ltd Upd\",\n\t\"address\": \"312 Forest Avenue, BF 923\",\n\t\"country\": \"USA\",\n\t\"employees\": [\n\t  {\n\t\t \"name\": \"Geil Metain\",\n\t\t \"age\": 23,\n\t\t \"position\": \"Admin\"\n\t  }\n\t]\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/3d490a70-94ce-4d15-9494-5248280c2ce3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"3d490a70-94ce-4d15-9494-5248280c2ce3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "12-Working with PATCH Requests",
+			"item": [
+				{
+					"name": "PATCH Employee for company (replace)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json-patch+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t    \"op\": \"replace\",\n\t    \"path\": \"/age\",\n\t    \"value\": \"28\"\n    }\n]"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees/80ABBCA8-664D-4B20-B5DE-024705497D4A",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees",
+								"80ABBCA8-664D-4B20-B5DE-024705497D4A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employee for Company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees/80ABBCA8-664D-4B20-B5DE-024705497D4A",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees",
+								"80ABBCA8-664D-4B20-B5DE-024705497D4A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Employee for company (remove)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json-patch+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t    \"op\": \"remove\",\n\t    \"path\": \"/age\",\n\t    \"value\": \"28\"\n    }\n]"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees/80ABBCA8-664D-4B20-B5DE-024705497D4A",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees",
+								"80ABBCA8-664D-4B20-B5DE-024705497D4A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Employee for company (add)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json-patch+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t    \"op\": \"add\",\n\t    \"path\": \"/age\",\n\t    \"value\": \"28\"\n    }\n]"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees/80ABBCA8-664D-4B20-B5DE-024705497D4A",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees",
+								"80ABBCA8-664D-4B20-B5DE-024705497D4A"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "13-Validation in ASP.NET Core Web API",
+			"item": [
+				{
+					"name": "POST Employee for Company (null values)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": null,\n\t\"age\": 29,\n\t\"position\": null\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/582ea192-6fb7-44ff-a2a1-08d988ca3ca9/employees",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"582ea192-6fb7-44ff-a2a1-08d988ca3ca9",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Employee for Company (invalid position)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Michael Patel\",\n\t\"age\": 29,\n\t\"position\": \"Some position with invalid length\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/582ea192-6fb7-44ff-a2a1-08d988ca3ca9/employees",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"582ea192-6fb7-44ff-a2a1-08d988ca3ca9",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Employee for Company (without age)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": null,\n\t\"position\": \"Some position with invalid length\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/582ea192-6fb7-44ff-a2a1-08d988ca3ca9/employees",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"582ea192-6fb7-44ff-a2a1-08d988ca3ca9",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Employee for Company (null values)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": null,\n\t\"age\": 29,\n\t\"position\": null\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees/80ABBCA8-664D-4B20-B5DE-024705497D4A",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees",
+								"80ABBCA8-664D-4B20-B5DE-024705497D4A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Employee for company invalid (remove)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json-patch+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t    \"op\": \"remove\",\n\t    \"path\": \"/ageeeeee\"\n    }\n]"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees/80ABBCA8-664D-4B20-B5DE-024705497D4A",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees",
+								"80ABBCA8-664D-4B20-B5DE-024705497D4A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Employee for company invalid (/age)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json-patch+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t    \"op\": \"remove\",\n\t    \"path\": \"/age\"\n    }\n]"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees/80ABBCA8-664D-4B20-B5DE-024705497D4A",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees",
+								"80ABBCA8-664D-4B20-B5DE-024705497D4A"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "15-Action Filters",
+			"item": [
+				{
+					"name": "POST Company (invalid)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Marketing Solutions Ltd\",\n\t\"address\": null,\n\t\"country\": \"USA\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Employee for Company (invalid)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Martin Geil\",\n\t\"age\": 0,\n\t\"position\": \"Marketing expert\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/53a1237a-3ed3-4462-b9f0-5a7bb1056a33/employees",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"53a1237a-3ed3-4462-b9f0-5a7bb1056a33",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Company (invalid)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/0AD5B971-FF51-414D-AF01-34187E407558",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"0AD5B971-FF51-414D-AF01-34187E407558"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Company (valid)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/14759D51-E9C1-4AFC-F9BF-08D98898C9C3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"14759D51-E9C1-4AFC-F9BF-08D98898C9C3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update Company (valid)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"IT_Solutions Ltd\",\n\t\"address\": \"583 Wall Dr. Gwynn Oak, MD 21207\",\n\t\"country\": \"USA\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Employee for company (invalid)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees/86DBA8C0-D178-41E7-938C-ED49778FB523",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees",
+								"86DBA8C0-D178-41E7-938C-ED49778FB523"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Employee for company (valid)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees/86DBA8C0-D178-41E7-938C-ED49778FB52A",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees",
+								"86DBA8C0-D178-41E7-938C-ED49778FB52A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Employee for company (invalid)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Sam Raiden\",\n\t\"age\": 30,\n\t\"position\": \"Software developer\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees/80ABBCA8-664D-4B20-B5DE-024705497D4C",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees",
+								"80ABBCA8-664D-4B20-B5DE-024705497D4C"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Employee for company (valid)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Sam Raiden\",\n\t\"age\": 30,\n\t\"position\": \"Software developer\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees/80ABBCA8-664D-4B20-B5DE-024705497D4A",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees",
+								"80ABBCA8-664D-4B20-B5DE-024705497D4A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Employee for company (valid)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json-patch+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t    \"op\": \"replace\",\n\t    \"path\": \"/age\",\n\t    \"value\": \"28\"\n    }\n]"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees/80ABBCA8-664D-4B20-B5DE-024705497D4A",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees",
+								"80ABBCA8-664D-4B20-B5DE-024705497D4A"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "16-Paging in ASP.NET Core Web API",
+			"item": [
+				{
+					"name": "POST Employee for Company Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "//add your body here\n\n\n\n\n"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees per company (page 2 size 2)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=2&pageSize=2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "2"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "17-Filtering in ASP.NET Core Web API",
+			"item": [
+				{
+					"name": "GET Employees per company (only minAge)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?minAge=32",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "minAge",
+									"value": "32"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees per company (only maxAge)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?maxAge=26",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "maxAge",
+									"value": "26"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees per company (minAge and maxAge)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?minAge=26&maxAge=30",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "minAge",
+									"value": "26"
+								},
+								{
+									"key": "maxAge",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees per company (page 1 size 4 with min and max age)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=32&maxAge=35",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "4"
+								},
+								{
+									"key": "minAge",
+									"value": "32"
+								},
+								{
+									"key": "maxAge",
+									"value": "35"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "18-Searching in ASP.NET Core Web API",
+			"item": [
+				{
+					"name": "GET Employees per company (search)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/c9d4c053-49b6-410c-bc78-2d54a9991870/employees?searchTerm=Mihael Fins",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"c9d4c053-49b6-410c-bc78-2d54a9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "searchTerm",
+									"value": "Mihael Fins"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees per company (search by chars)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/c9d4c053-49b6-410c-bc78-2d54a9991870/employees?searchTerm=ae",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"c9d4c053-49b6-410c-bc78-2d54a9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "searchTerm",
+									"value": "ae"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees per company (combination)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=32&maxAge=35&searchTerm=MA",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "4"
+								},
+								{
+									"key": "minAge",
+									"value": "32"
+								},
+								{
+									"key": "maxAge",
+									"value": "35"
+								},
+								{
+									"key": "searchTerm",
+									"value": "MA"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "19-Sorting in ASP.NET Core Web API",
+			"item": [
+				{
+					"name": "POST Employee for Company (Jana McLeaf)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Jana McLeaf\",\n\t\"age\": 27,\n\t\"position\": \"Marketing expert II\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees by company (sort name, age desc)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?orderBy=name,age desc",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "orderBy",
+									"value": "name,age desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees by company (sort name desc, age)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?orderBy=name desc,age",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "orderBy",
+									"value": "name desc,age"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees by company invalid sort",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?orderBy=country",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "orderBy",
+									"value": "country"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees by company combination",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=26&maxAge=32&searchTerm=A&orderBy=name desc",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "4"
+								},
+								{
+									"key": "minAge",
+									"value": "26"
+								},
+								{
+									"key": "maxAge",
+									"value": "32"
+								},
+								{
+									"key": "searchTerm",
+									"value": "A"
+								},
+								{
+									"key": "orderBy",
+									"value": "name desc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "20-Data Shaping in ASP.NET Core Web API",
+			"item": [
+				{
+					"name": "GET Employees by company (fields name, age)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?fields=name,age",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "name,age"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees by company combination",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=26&maxAge=32&searchTerm=A&orderBy=name desc&fields=name,age",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "4"
+								},
+								{
+									"key": "minAge",
+									"value": "26"
+								},
+								{
+									"key": "maxAge",
+									"value": "32"
+								},
+								{
+									"key": "searchTerm",
+									"value": "A"
+								},
+								{
+									"key": "orderBy",
+									"value": "name desc"
+								},
+								{
+									"key": "fields",
+									"value": "name,age"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees by company combination (xml)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/xml"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=26&maxAge=32&searchTerm=A&orderBy=name desc&fields=name,age",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "4"
+								},
+								{
+									"key": "minAge",
+									"value": "26"
+								},
+								{
+									"key": "maxAge",
+									"value": "32"
+								},
+								{
+									"key": "searchTerm",
+									"value": "A"
+								},
+								{
+									"key": "orderBy",
+									"value": "name desc"
+								},
+								{
+									"key": "fields",
+									"value": "name,age"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "21-Implementing HATEOAS in ASP.NET Core Web API",
+			"item": [
+				{
+					"name": "GET Employees by company combination (hateoas)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.codemaze.hateoas+json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=26&maxAge=32&searchTerm=A&orderBy=name desc&fields=name,age",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "4"
+								},
+								{
+									"key": "minAge",
+									"value": "26"
+								},
+								{
+									"key": "maxAge",
+									"value": "32"
+								},
+								{
+									"key": "searchTerm",
+									"value": "A"
+								},
+								{
+									"key": "orderBy",
+									"value": "name desc"
+								},
+								{
+									"key": "fields",
+									"value": "name,age"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Employees by company combination (xml hateoas)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.codemaze.hateoas+xml"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=26&maxAge=32&searchTerm=A&orderBy=name desc&fields=name,age",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "4"
+								},
+								{
+									"key": "minAge",
+									"value": "26"
+								},
+								{
+									"key": "maxAge",
+									"value": "32"
+								},
+								{
+									"key": "searchTerm",
+									"value": "A"
+								},
+								{
+									"key": "orderBy",
+									"value": "name desc"
+								},
+								{
+									"key": "fields",
+									"value": "name,age"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "22-Working with Options and Head Requests",
+			"item": [
+				{
+					"name": "OPTIONS Companies",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HEAD Employees for company",
+					"request": {
+						"method": "HEAD",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=2&pageSize=2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"C9D4C053-49B6-410C-BC78-2D54A9991870",
+								"employees"
+							],
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "2"
+								},
+								{
+									"key": "pageSize",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "23-Root Document in ASP.NET Core Web API",
+			"item": [
+				{
+					"name": "GET Document Root (json)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.codemaze.apiroot+json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Document Root (xml)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.codemaze.apiroot+xml"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Document Root (without custom media type)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "24-Versioning APIs in ASP.nET Core",
+			"item": [
+				{
+					"name": "Get without version",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get with version (query string)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies?api-version=2.0",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							],
+							"query": [
+								{
+									"key": "api-version",
+									"value": "2.0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get with version (uri)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/2.0/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"2.0",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get with version (header)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "api-version",
+								"value": "2.0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "25-Caching in ASP.NET Core Web API",
+			"item": [
+				{
+					"name": "Get company",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/3d490a70-94ce-4d15-9494-5248280c2ce3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"3d490a70-94ce-4d15-9494-5248280c2ce3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get companies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get company (if-none-match)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "If-None-Match",
+								"value": "\"B0AE1EB1A7F9A1C19F124B5C9AD666D8\"",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/3d490a70-94ce-4d15-9494-5248280c2ce3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"3d490a70-94ce-4d15-9494-5248280c2ce3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Company",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"3d490a70-94ce-4d15-9494-5248280c2ce3\",\r\n    \"name\": \"Admin_Solutions Ltd Upd2\",\r\n    \"address\": \"312 Forest Avenue, BF 923\",\r\n    \"country\": \"USA\"\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/3d490a70-94ce-4d15-9494-5248280c2ce3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"3d490a70-94ce-4d15-9494-5248280c2ce3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "26-Rate Limiting and Throttling",
+			"item": [
+				{
+					"name": "GET Companies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "27-JWT and Identity in ASP.NET Core",
+			"item": [
+				{
+					"name": "POST Register user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstname\": \"Jonh\",\n  \"lastname\": \"Doe\",\n  \"username\": \"JDoe\",\n  \"password\": \"Password1000\",\n  \"email\": \"johndoe@mail.com\",\n  \"phonenumber\": \"589-654\",\n  \"roles\": [\n    \"Manager\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/authentication",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Register user (invalid model)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstname\": \"Jonh\",\n  \"lastname\": \"Doe\",\n  \"password\": \"Password1000\",\n  \"email\": \"johndoe@mail.com\",\n  \"phonenumber\": \"589-654\",\n  \"roles\": [\n    \"Manager\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/authentication",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Register user (invalid password)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstname\": \"Jonh\",\n  \"lastname\": \"Doe\",\n  \"username\": \"JDoe\",\n  \"password\": \"Password\",\n  \"email\": \"johndoe@mail.com\",\n  \"phonenumber\": \"589-654\",\n  \"roles\": [\n    \"Manager\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/authentication",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Register user (same email)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstname\": \"Jonh\",\n  \"lastname\": \"Doe\",\n  \"username\": \"JDoe\",\n  \"password\": \"Password1000\",\n  \"email\": \"johndoe@mail.com\",\n  \"phonenumber\": \"589-654\",\n  \"roles\": [\n    \"Manager\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/authentication",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Companies (no auth)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Authenticate (valid)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"JDoe\",\n\t\"password\": \"Password1000\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/authentication/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"authentication",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Authenticate (invalid)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"JDoe\",\n\t\"password\": \"Password10001\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/authentication/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"authentication",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Companies (with token)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiSmFuZURvZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmF0b3IiLCJleHAiOjE2MDU1NDQyMjksImlzcyI6IkNvZGVNYXplQVBJIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSJ9.EUFpY0fmX08t6ZMMS7AZW2QQhJOKvjAtOK1hBLXBLbw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Register user (Jane Doe)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstname\": \"Jane\",\n  \"lastname\": \"Doe\",\n  \"username\": \"JaneDoe\",\n  \"password\": \"Password2000\",\n  \"email\": \"janedoe@mail.com\",\n  \"phonenumber\": \"583-653\",\n  \"roles\": [\n    \"Administrator\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/authentication",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Authenticate (valid Jane Doe)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"JaneDoe\",\n\t\"password\": \"Password2000\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/authentication/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"authentication",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "28-Refresh Token",
+			"item": [
+				{
+					"name": "POST Authenticate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"JDoe\",\n\t\"password\": \"Password1000\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/authentication/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"authentication",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Refresh",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accessToken\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiSkRvZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Ik1hbmFnZXIiLCJleHAiOjE2MzQ1NTk0OTYsImlzcyI6IkNvZGVNYXplQVBJIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSJ9.OPoQNCNdazc6vLYdqNBN71TjGI3Zs0APY_1byl_7QLg\",\r\n    \"refreshToken\": \"LjmKhKtIr16WQ37pRyeEc9x2ve9+AT5KGsInDQSsgVg=\"\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/token/refresh",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "30-Publish IIS Test",
+			"item": [
+				{
+					"name": "GET Document Root (json)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.codemaze.apiroot+json"
+							}
+						],
+						"url": {
+							"raw": "http://www.companyemployees.codemaze/api",
+							"protocol": "http",
+							"host": [
+								"www",
+								"companyemployees",
+								"codemaze"
+							],
+							"path": [
+								"api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Authenticate (valid)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"JDoe\",\n\t\"password\": \"Password1000\"\n}"
+						},
+						"url": {
+							"raw": "http://www.companyemployees.codemaze/api/authentication/login",
+							"protocol": "http",
+							"host": [
+								"www",
+								"companyemployees",
+								"codemaze"
+							],
+							"path": [
+								"api",
+								"authentication",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Companies (with token) Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiSkRvZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6Ik1hbmFnZXIiLCJleHAiOjE2MzQ4MDkyMDksImlzcyI6IkNvZGVNYXplQVBJIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSJ9.67PRAsuKCzY6JYTzvTk--p6422No6vRk1MH3ll6Tvt4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://www.companyemployees.codemaze/api/companies",
+							"protocol": "http",
+							"host": [
+								"www",
+								"companyemployees",
+								"codemaze"
+							],
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "31-API Response",
+			"item": [
+				{
+					"name": "Get Companies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/3d490a70-94ce-4d15-9494-5248280c2ce3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"3d490a70-94ce-4d15-9494-5248280c2ce3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unexisting Company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/3d490a70-94ce-4d15-9494-5248280c2ce2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"3d490a70-94ce-4d15-9494-5248280c2ce2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "32-CQRS",
+			"item": [
+				{
+					"name": "Get Companies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/3d490a70-94ce-4d15-9494-5248280c2ce3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"3d490a70-94ce-4d15-9494-5248280c2ce3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unexisting Company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/companies/3d490a70-94ce-4d15-9494-5248280c2ce2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"3d490a70-94ce-4d15-9494-5248280c2ce2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"CQRS Test Company\",\n\t\"address\": \"CQRS Test Address\",\n\t\"country\": \"CQRS Test Country\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Company",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Updated CQRS Test Company\",\n\t\"address\": \"CQRS Test Address\",\n\t\"country\": \"CQRS Test Country\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/7aea16e2-74b9-4fd9-c22a-08d9961aa2d5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"7aea16e2-74b9-4fd9-c22a-08d9961aa2d5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Company",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies/e06089af-baeb-44ef-1fdf-08d99630e212",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies",
+								"e06089af-baeb-44ef-1fdf-08d99630e212"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Company (invalid)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Marketing Solutions Ltd\",\n\t\"address\": null,\n\t\"country\": \"USA\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Company (null)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/companies",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
