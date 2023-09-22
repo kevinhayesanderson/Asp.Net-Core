@@ -1,0 +1,8 @@
+To set which environment our application runs on, 
+we need to set up the ASPNETCORE_ENVIRONMENT environment variable.
+
+set the variable through the command prompt by typing set ASPNETCORE_ENVIRONMENT=Production in Windows 
+or export ASPNET_CORE_ENVIRONMENT=Production in Linux.
+
+SET ASPNETCORE_ENVIRONMENT=Production
+echo %ASPNETCORE_ENVIRONMENT%
