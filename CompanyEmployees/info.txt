@@ -6,3 +6,16 @@ or export ASPNET_CORE_ENVIRONMENT=Production in Linux.
 
 SET ASPNETCORE_ENVIRONMENT=Production
 echo %ASPNETCORE_ENVIRONMENT%
+
+Order of Registering middleware components:
+
+ExceptionHandler //register early, so it could catch all the exceptions in the later stages
+HSTS
+HttpsRedirection
+Static Files
+Routing
+CORS
+Authentication
+Authorization
+Custom Middlewares
+Endpoint Configuration
