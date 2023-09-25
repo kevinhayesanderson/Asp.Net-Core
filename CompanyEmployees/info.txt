@@ -8,7 +8,6 @@ SET ASPNETCORE_ENVIRONMENT=Production
 echo %ASPNETCORE_ENVIRONMENT%
 
 Order of Registering middleware components:
-
 ExceptionHandler //register early, so it could catch all the exceptions in the later stages
 HSTS
 HttpsRedirection
@@ -19,3 +18,17 @@ Authentication
 Authorization
 Custom Middlewares
 Endpoint Configuration
+
+Onion architecture:
+4 layers:
+• Domain Layer
+• Service Layer
+• Infrastructure Layer
+• Presentation Layer
+The flow of dependencies is towards the core of the Onion.
+The deeper the layer resides inside the Onion, the fewer dependencies it has.
+Domain layer does not have any direct dependencies
+outer layers are all allowed to reference the layers that are directly below them
+
+navigational properties in Entities:
+these properties serve the purpose of defining the relationship between our models.
