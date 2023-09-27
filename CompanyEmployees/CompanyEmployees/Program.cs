@@ -19,6 +19,8 @@ namespace CompanyEmployees
             
             builder.Services.ConfigureLoggerService();
 
+            builder.Services.ConfigureRepositoryManager();
+
             _ = builder.Services.AddControllers();
 
             WebApplication app = builder.Build();
