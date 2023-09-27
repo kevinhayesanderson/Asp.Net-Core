@@ -2,6 +2,7 @@
 
 using Contracts;
 using LoggerService;
+using Microsoft.EntityFrameworkCore;
 using Repository;
 using Service;
 using Service.Contracts;
@@ -45,6 +46,13 @@ namespace CompanyEmployees.Extensions
         public static void ConfigureServiceManager(this IServiceCollection services)
         {
             _ = services.AddScoped<IServiceManager, ServiceManager>();
+        }
+
+        public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            ////_ = services.AddDbContext<RepositoryContext>(optionsAction =>
+            ////    optionsAction.UseSqlServer(configuration.GetConnectionString("sqlConnection"))); //old method
+            _ = services.AddSqlServer<RepositoryContext>(configuration.GetConnectionString("sqlConnection"));
         }
     }
 }

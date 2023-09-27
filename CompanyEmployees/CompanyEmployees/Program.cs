@@ -23,6 +23,8 @@ namespace CompanyEmployees
 
             builder.Services.ConfigureServiceManager();
 
+            builder.Services.ConfigureSqlContext(builder.Configuration);
+
             _ = builder.Services.AddControllers();
 
             WebApplication app = builder.Build();
