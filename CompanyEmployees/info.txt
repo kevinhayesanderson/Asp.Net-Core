@@ -21,8 +21,8 @@ Endpoint Configuration
 
 Onion architecture:
 4 layers:
-• Domain Layer
-• Service Layer
+• Domain Layer (Contracts project)
+• Service Layer (Service.Contracts project and Service project)
 • Infrastructure Layer
 • Presentation Layer
 The flow of dependencies is towards the core of the Onion.
