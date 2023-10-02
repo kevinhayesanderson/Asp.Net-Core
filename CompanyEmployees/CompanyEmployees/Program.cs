@@ -1,4 +1,5 @@
 using CompanyEmployees.Extensions;
+using Contracts;
 using NLog;
 
 namespace CompanyEmployees
@@ -34,11 +35,15 @@ namespace CompanyEmployees
 
             // Configure the HTTP request pipeline.
 
-            if (app.Environment.IsDevelopment())
-            {
-                _ = app.UseDeveloperExceptionPage();
-            }
-            else
+            var logger = app.Services.GetRequiredService<ILoggerManager>();
+
+            app.ConfigureExceptionHandler(logger);
+
+            ////if (app.Environment.IsDevelopment())
+            ////{
+            ////    _ = app.UseDeveloperExceptionPage();
+            ////}
+            if(app.Environment.IsProduction())
             {
                 _ = app.UseHsts();////adds the Strict-Transport-Security header
             }

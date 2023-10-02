@@ -14,21 +14,16 @@ namespace CompanyEmployees.Presentation.Controllers
             _service = service;
         }
 
-       
+
         //// Because there is no route attribute right above the action, 
         //// the route for the GetCompanies action will be api/companies which is the route placed on top of our controller.
         [HttpGet]
         public IActionResult GetCompanies()
         {
-            try
-            {
-                var companies = _service.CompanyService.GetAllCompanies(trackChanges: false);
-                return Ok(companies);   
-            }
-            catch
-            {
-                return StatusCode(500, "Internal server error");
-            }
+            ////throw new Exception("Exception Test");
+            var companies = _service.CompanyService.GetAllCompanies(trackChanges: false);
+            return Ok(companies);
+
         }
     }
 }
