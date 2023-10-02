@@ -25,7 +25,8 @@ namespace CompanyEmployees
 
             builder.Services.ConfigureSqlContext(builder.Configuration);
 
-            _ = builder.Services.AddControllers();
+            _ = builder.Services.AddControllers()
+                .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
 
             WebApplication app = builder.Build();
 

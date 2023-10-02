@@ -32,3 +32,42 @@ outer layers are all allowed to reference the layers that are directly below the
 
 navigational properties in Entities:
 these properties serve the purpose of defining the relationship between our models.
+
+Controllers:
+Controllers should only be responsible for handling requests, model validation, 
+and returning responses to the frontend or some HTTP client. 
+
+Keeping business logic away from controllers is a good way to keep them lightweight, 
+and our code more readable and maintainable.
+
+Web API routing routes incoming HTTP requests to the particular action method inside the Web API controller. 
+As soon as we send our HTTP request, the MVC framework parses that request and tries to match it to an action in the controller. 
+There are two ways to implement routing in the project:
+• Convention-based routing and
+• Attribute routing
+
+Convention-based routing is called such because it establishes a convention for the URL paths.
+	Found in MVC project, needs app.UseRouting to add routing middleware
+
+	app.MapControllerRoute(
+	name: "default",
+	pattern: "{controller=Home}/{action=Index}/{id?}");
+
+	The first part creates the mapping for the controller name, 
+	the second part creates the mapping for the action method, 
+	third part is used for the optional parameter.
+
+Attribute routing
+	we place the base route above the controller class
+	the ASP.NET Core team suggests that we shouldn’t use Convention-based Routing, but Attribute routing instead.
+	Different actions can be executed on the resource with the same URI, but with different HTTP Methods.
+	
+	The resource name in the URI should always be a noun and not an action.
+	create this route: api/companies and not this one: /api/getCompanies
+	
+	the hierarchy between our resources
+	/api/principalResource/{principalId}/dependentResource
+	/api/companies/{companyId}/employees
+	
+The IActionResult interface supports using a variety of methods, 
+which return not only the result but also the status codes.
