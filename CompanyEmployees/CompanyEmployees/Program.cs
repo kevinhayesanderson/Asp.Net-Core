@@ -28,6 +28,8 @@ namespace CompanyEmployees
             _ = builder.Services.AddControllers()
                 .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
 
+            builder.Services.AddAutoMapper(typeof(Program));
+
             WebApplication app = builder.Build();
 
             // Configure the HTTP request pipeline.

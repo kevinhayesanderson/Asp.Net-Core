@@ -71,3 +71,10 @@ Attribute routing
 	
 The IActionResult interface supports using a variety of methods, 
 which return not only the result but also the status codes.
+
+DTO:
+A data transfer object (DTO) is an object that we use to transport data between the client and server applications.
+EF Core uses model classes to map them to the tables in the database and that is the main purpose of a model class.
+our models have navigational properties and sometimes we don’t want to map them in an API response.
+we can use DTO to remove any property or concatenate properties into a single property.
+Change in DB or model, the result will be same by using DTO
