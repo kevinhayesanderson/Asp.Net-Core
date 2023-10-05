@@ -11,13 +11,13 @@ namespace CompanyEmployees
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
             LogManager.Setup().LoadConfigurationFromFile(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
-            
+
             // Add services to the container.
 
             builder.Services.ConfigureCors();
 
             builder.Services.ConfigureIISIntegration();
-            
+
             builder.Services.ConfigureLoggerService();
 
             builder.Services.ConfigureRepositoryManager();
@@ -43,7 +43,7 @@ namespace CompanyEmployees
             ////{
             ////    _ = app.UseDeveloperExceptionPage();
             ////}
-            if(app.Environment.IsProduction())
+            if (app.Environment.IsProduction())
             {
                 _ = app.UseHsts();////adds the Strict-Transport-Security header
             }

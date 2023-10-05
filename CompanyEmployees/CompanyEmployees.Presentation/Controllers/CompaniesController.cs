@@ -14,8 +14,7 @@ namespace CompanyEmployees.Presentation.Controllers
             _service = service;
         }
 
-
-        //// Because there is no route attribute right above the action, 
+        //// Because there is no route attribute right above the action,
         //// the route for the GetCompanies action will be api/companies which is the route placed on top of our controller.
         [HttpGet]
         public IActionResult GetCompanies()
@@ -23,7 +22,13 @@ namespace CompanyEmployees.Presentation.Controllers
             ////throw new Exception("Exception Test");
             var companies = _service.CompanyService.GetAllCompanies(trackChanges: false);
             return Ok(companies);
+        }
 
+        [HttpGet("{id:guid}")]
+        public IActionResult GetCompany(Guid id)
+        {
+            var company = _service.CompanyService.GetCompany(id, trackChanges: false);
+            return Ok(company);
         }
     }
 }

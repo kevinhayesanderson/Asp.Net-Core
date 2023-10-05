@@ -14,8 +14,10 @@ namespace CompanyEmployees
             ////AutoMapper is not able to find the specific FullAddress property as we specified in the MappingProfile class.
             ////we are not using the ForMember method but the ForCtorParam method to specify the name of the parameter in the constructor that AutoMapper needs to map to.
             CreateMap<Company, CompanyDto>()
-                .ForCtorParam("FullAddress", 
+                .ForCtorParam("FullAddress",
                 opt => opt.MapFrom(x => string.Join(' ', x.Address, x.Country)));
+
+            CreateMap<Employee, EmployeeDto>();
         }
     }
 }

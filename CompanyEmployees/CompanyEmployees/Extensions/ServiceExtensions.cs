@@ -29,7 +29,6 @@ namespace CompanyEmployees.Extensions
         {
             _ = services.Configure<IISOptions>(configureOptions =>
             {
-
             });
         }
 

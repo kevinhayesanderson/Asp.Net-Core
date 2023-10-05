@@ -78,3 +78,7 @@ EF Core uses model classes to map them to the tables in the database and that is
 our models have navigational properties and sometimes we don’t want to map them in an API response.
 we can use DTO to remove any property or concatenate properties into a single property.
 Change in DB or model, the result will be same by using DTO
+
+Global Error Handling:
+Handling errors globally with Built-In Middleware.
+The UseExceptionHandler middleware is a built-in middleware that we can use to handle exceptions.

@@ -13,14 +13,14 @@ namespace Repository
             RepositoryContext = repositoryContext;
         }
 
-        public IQueryable<T> FindAll(bool trackChanges) => 
-            trackChanges ? 
-            RepositoryContext.Set<T>() : 
+        public IQueryable<T> FindAll(bool trackChanges) =>
+            trackChanges ?
+            RepositoryContext.Set<T>() :
             RepositoryContext.Set<T>().AsNoTracking();
 
-        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges) => 
-            trackChanges ? 
-            RepositoryContext.Set<T>().Where(expression) : 
+        public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges) =>
+            trackChanges ?
+            RepositoryContext.Set<T>().Where(expression) :
             RepositoryContext.Set<T>().Where(expression).AsNoTracking();
 
         public void Create(T entity) => RepositoryContext.Set<T>().Add(entity);
