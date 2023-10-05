@@ -82,3 +82,20 @@ Change in DB or model, the result will be same by using DTO
 Global Error Handling:
 Handling errors globally with Built-In Middleware.
 The UseExceptionHandler middleware is a built-in middleware that we can use to handle exceptions.
+
+
+Method Safety:
+method a safe one if it doesn’t change the resource representation.
+
+Method Idempotency:
+If we can call a method multiple times with the same result, we can consider that method idempotent. 
+the side effects of calling it once are the same as calling it multiple times.
+
+HTTP Method		Is it Safe?		Is it Idempotent? 
+GET				Yes				Yes
+OPTIONS			Yes				Yes 
+HEAD			Yes				Yes
+POST			No				No 
+DELETE			No				Yes
+PUT				No				Yes 
+PATCH			No				No
