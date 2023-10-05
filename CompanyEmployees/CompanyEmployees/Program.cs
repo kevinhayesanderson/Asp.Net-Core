@@ -26,10 +26,16 @@ namespace CompanyEmployees
 
             builder.Services.ConfigureSqlContext(builder.Configuration);
 
-            _ = builder.Services.AddControllers()
-                .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
-
             builder.Services.AddAutoMapper(typeof(Program));
+
+            _ = builder.Services.AddControllers(configure =>
+            {
+                configure.RespectBrowserAcceptHeader = true;
+                configure.ReturnHttpNotAcceptable = true;
+            })
+                .AddXmlDataContractSerializerFormatters()
+                .AddCustomCSVFormatter()
+                .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
 
             WebApplication app = builder.Build();
 
