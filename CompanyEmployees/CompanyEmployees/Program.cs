@@ -1,5 +1,6 @@
 using CompanyEmployees.Extensions;
 using Contracts;
+using Microsoft.AspNetCore.Mvc;
 using NLog;
 
 namespace CompanyEmployees
@@ -10,7 +11,7 @@ namespace CompanyEmployees
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-            LogManager.Setup().LoadConfigurationFromFile(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+            _ = LogManager.Setup().LoadConfigurationFromFile(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
             // Add services to the container.
 
@@ -26,7 +27,14 @@ namespace CompanyEmployees
 
             builder.Services.ConfigureSqlContext(builder.Configuration);
 
-            builder.Services.AddAutoMapper(typeof(Program));
+            _ = builder.Services.AddAutoMapper(typeof(Program));
+
+            //// With this, we are suppressing a default model state validation that is implemented 
+            //// due to the existence of the [ApiController] attribute in all API controllers.
+            _ = builder.Services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
 
             _ = builder.Services.AddControllers(configure =>
             {
@@ -41,7 +49,7 @@ namespace CompanyEmployees
 
             // Configure the HTTP request pipeline.
 
-            var logger = app.Services.GetRequiredService<ILoggerManager>();
+            ILoggerManager logger = app.Services.GetRequiredService<ILoggerManager>();
 
             app.ConfigureExceptionHandler(logger);
 
