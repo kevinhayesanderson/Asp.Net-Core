@@ -43,5 +43,12 @@ namespace CompanyEmployees.Presentation.Controllers
             //// routeValues anonymous object is for specifying parameters for GetEmployeeForCompany method
             return CreatedAtRoute("GetEmployeeForCompany", new { companyId, id = employeeToReturn.Id }, employeeToReturn);
         }
+
+        [HttpDelete("{id:guid}")]
+        public IActionResult DeleteEmployeeForCompany(Guid companyId, Guid id)
+        {
+            _service.EmployeeService.DeleteEmployeeForCompany(companyId, id, trackChanges: false);
+            return NoContent(); //// returns the status code 204 No Content.
+        }
     }
 }

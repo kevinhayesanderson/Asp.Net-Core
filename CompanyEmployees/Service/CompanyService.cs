@@ -45,10 +45,20 @@ namespace Service
             }
             _repository.Save();
 
-            var companyCollectionToRetuen = _mapper.Map<IEnumerable<CompanyDto>>(companyEntities);
-            var ids = string.Join(",",companyCollectionToRetuen.Select(c =>c.Id));  
+            var companyCollectionToReturn = _mapper.Map<IEnumerable<CompanyDto>>(companyEntities);
+            var ids = string.Join(",",companyCollectionToReturn.Select(c =>c.Id));  
 
-            return (companies: companyCollectionToRetuen, ids);
+            return (companies: companyCollectionToReturn, ids);
+        }
+
+        public void DeleteCompany(Guid companyId, bool trackChanges)
+        {
+            var company = _repository.Company.GetCompany(companyId, trackChanges);
+            if (company == null)
+                throw new CompanyNotFoundException(companyId);
+
+            _repository.Company.DeleteCompany(company);
+            _repository.Save();
         }
 
         public IEnumerable<CompanyDto> GetAllCompanies(bool trackChanges)
