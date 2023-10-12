@@ -77,7 +77,7 @@ namespace CompanyEmployees.Presentation.Controllers
         [HttpPut("{id:guid}")]
         public IActionResult UpdateCompany(Guid id, [FromBody] CompanyForUpdateDto company)
         {
-            if(company == null)
+            if (company == null)
                 return BadRequest("CompanyForUpdateDto object is null");
 
             _service.CompanyService.UpdateCompany(id, company, trackChanges: true);

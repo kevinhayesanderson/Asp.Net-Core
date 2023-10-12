@@ -124,14 +124,14 @@ namespace Service
                 throw new EmployeeNotFoundException(id);
             }
 
-            //// the trackChanges parameter will be set to true for the employeeEntity. 
-            //// That’s because we want EF Core to track changes on this entity. 
-            //// This means that as soon as we change any property in this entity, 
+            //// the trackChanges parameter will be set to true for the employeeEntity.
+            //// That’s because we want EF Core to track changes on this entity.
+            //// This means that as soon as we change any property in this entity,
             //// EF Core will set the state of that entity to Modified.
             _ = _mapper.Map(employeeForUpdate, employeeEntity);
 
-            //// Because our entity has a modified state, 
-            //// it is enough to call the Save method without any additional update actions. 
+            //// Because our entity has a modified state,
+            //// it is enough to call the Save method without any additional update actions.
             //// As soon as we call the Save method, our entity is going to be updated in the database.
             _repository.Save();
         }

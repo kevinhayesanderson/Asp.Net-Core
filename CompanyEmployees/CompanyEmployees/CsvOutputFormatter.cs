@@ -15,7 +15,7 @@ namespace CompanyEmployees
             SupportedEncodings.Add(Encoding.Unicode);
         }
 
-        //// The CanWriteType method is overridden, 
+        //// The CanWriteType method is overridden,
         //// and it indicates whether or not the CompanyDto type can be written by this serializer.
         protected override bool CanWriteType(Type? type)
         {

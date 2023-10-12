@@ -4,7 +4,6 @@
     {
         public CompanyCollectionBadRequestException() : base("Company collection sent from a client is null.")
         {
-
         }
     }
 }

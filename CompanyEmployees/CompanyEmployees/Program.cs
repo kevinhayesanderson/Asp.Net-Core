@@ -31,7 +31,7 @@ namespace CompanyEmployees
 
             _ = builder.Services.AddAutoMapper(typeof(Program));
 
-            //// With this, we are suppressing a default model state validation that is implemented 
+            //// With this, we are suppressing a default model state validation that is implemented
             //// due to the existence of the [ApiController] attribute in all API controllers.
             _ = builder.Services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -120,7 +120,7 @@ namespace CompanyEmployees
             app.Run();
 
             //// local function
-            //// This function configures support for JSON Patch using Newtonsoft.Json 
+            //// This function configures support for JSON Patch using Newtonsoft.Json
             //// while leaving the other formatters unchanged.
             NewtonsoftJsonPatchInputFormatter GetJsonPatchInputFormatter()
             {

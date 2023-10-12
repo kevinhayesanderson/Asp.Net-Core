@@ -33,7 +33,7 @@ namespace Service
 
         public (IEnumerable<CompanyDto> companies, string ids) CreateCompanyCollection(IEnumerable<CompanyForCreationDto> companyCollection)
         {
-            if(companyCollection == null)
+            if (companyCollection == null)
             {
                 throw new CompanyCollectionBadRequestException();
             }
@@ -46,7 +46,7 @@ namespace Service
             _repository.Save();
 
             var companyCollectionToReturn = _mapper.Map<IEnumerable<CompanyDto>>(companyEntities);
-            var ids = string.Join(",",companyCollectionToReturn.Select(c =>c.Id));  
+            var ids = string.Join(",", companyCollectionToReturn.Select(c => c.Id));
 
             return (companies: companyCollectionToReturn, ids);
         }
@@ -72,13 +72,13 @@ namespace Service
 
         public IEnumerable<CompanyDto> GetByIds(IEnumerable<Guid> ids, bool trackChanges)
         {
-            if(ids is null)
+            if (ids is null)
             {
                 throw new IdParametersBadRequestException();
             }
 
             var companyEntities = _repository.Company.GetByIds(ids, trackChanges);
-            if(ids.Count() != companyEntities.Count())
+            if (ids.Count() != companyEntities.Count())
             {
                 throw new CollectionByIdsBadRequestException();
             }
@@ -99,7 +99,7 @@ namespace Service
         public void UpdateCompany(Guid companyId, CompanyForUpdateDto companyForUpdate, bool trackChanges)
         {
             var companyEntity = _repository.Company.GetCompany(companyId, trackChanges);
-            if(companyEntity is null)
+            if (companyEntity is null)
                 throw new CompanyNotFoundException(companyId);
 
             _mapper.Map(companyForUpdate, companyEntity);
