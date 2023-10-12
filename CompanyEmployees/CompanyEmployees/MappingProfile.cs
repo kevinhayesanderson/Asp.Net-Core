@@ -23,7 +23,8 @@ namespace CompanyEmployees
 
             CreateMap<EmployeeForCreationDto, Employee>();
 
-            CreateMap<EmployeeForUpdateDto, Employee>();
+            //// ReverseMap creates reverse of the mapping rule(i.e: CreateMap<Employee, EmployeeForUpdateDto>())
+            CreateMap<EmployeeForUpdateDto, Employee>().ReverseMap();
 
             CreateMap<CompanyForUpdateDto, Company>();
         }

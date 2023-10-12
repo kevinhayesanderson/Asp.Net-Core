@@ -107,3 +107,37 @@ API-specific behaviors:
 • Binding source parameter inference
 • Multipart/form-data request inference
 • Problem details for error status codes
+
+PATCH:
+to fully update our resource, we should use PUT .
+to update our resource only partially, we should use PATCH.
+Microsoft.AspNetCore.JsonPatch library : usage of JsonPatchDocument in our controller
+Microsoft.AspNetCore.Mvc.NewtonsoftJson library : request body conversion to a PatchDocument
+
+request body: [FromBody]JsonPatchDocument<Company>
+request media type: application/json-patch+json
+
+[ { "op": "replace", "path": "/name", "value": "new name" }, { "op": "remove", "path": "/name" } ]
+array of operations
+operations in curly brackets
+operations represented by op property
+path property represents the object's property that we want to modify
+value property represents a new value
+
+Add: { "op": "add", "path": "/name", "value": "new value" } 
+Assigns a new value to a required property.
+
+Remove: { "op": "remove", "path": "/name" }
+Sets a default value to a required property.
+
+Replace: { "op": "replace", "path": "/name", "value": "new value" } 
+Replaces a value of a required property to a new value.
+
+Copy: { "op": "copy", "from": "/name", "path": "/title" }
+Copies the value from a property in the “from” part to the property in the “path” part.
+
+Move: { "op": "move", "from": "/name", "path": "/title" } 
+Moves the value from a property in the “from” part to a property in the “path” part.
+
+Test: { "op": "test", "path": "/name", "value": "new value" }
+Tests if a property has a specified value.

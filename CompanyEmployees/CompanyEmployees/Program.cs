@@ -1,6 +1,8 @@
 using CompanyEmployees.Extensions;
 using Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Extensions.Options;
 using NLog;
 
 namespace CompanyEmployees
@@ -40,6 +42,7 @@ namespace CompanyEmployees
             {
                 configure.RespectBrowserAcceptHeader = true;
                 configure.ReturnHttpNotAcceptable = true;
+                configure.InputFormatters.Insert(0, GetJsonPatchInputFormatter());
             })
                 .AddXmlDataContractSerializerFormatters()
                 .AddCustomCSVFormatter()
@@ -115,6 +118,20 @@ namespace CompanyEmployees
             _ = app.MapControllers();
 
             app.Run();
+
+            //// local function
+            //// This function configures support for JSON Patch using Newtonsoft.Json 
+            //// while leaving the other formatters unchanged.
+            NewtonsoftJsonPatchInputFormatter GetJsonPatchInputFormatter()
+            {
+                return new ServiceCollection()
+                    .AddLogging()
+                    .AddMvc()
+                    .AddNewtonsoftJson()
+                    .Services.BuildServiceProvider()
+                    .GetRequiredService<IOptions<MvcOptions>>().Value.InputFormatters
+                    .OfType<NewtonsoftJsonPatchInputFormatter>().First();
+            }
         }
     }
 }
