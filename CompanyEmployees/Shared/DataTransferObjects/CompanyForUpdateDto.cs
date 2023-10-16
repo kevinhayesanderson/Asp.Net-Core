@@ -2,5 +2,5 @@
 
 public record CompanyForUpdateDto : CompanyForManipulationDto
 {
-	public IEnumerable<EmployeeForCreationDto>? Employees { get; init; }
+    public IEnumerable<EmployeeForCreationDto>? Employees { get; init; }
 }

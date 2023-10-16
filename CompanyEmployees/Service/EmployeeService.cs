@@ -20,9 +20,9 @@ namespace Service
             _mapper = mapper;
         }
 
-        public EmployeeDto CreateEmployeeForCompany(Guid companyId, EmployeeForCreationDto employeeForCreation, bool trackChanges)
+        public async Task<EmployeeDto> CreateEmployeeForCompanyAsync(Guid companyId, EmployeeForCreationDto employeeForCreation, bool trackChanges)
         {
-            Company? company = _repository.Company.GetCompany(companyId, trackChanges);
+            Company? company = await _repository.Company.GetCompanyAsync(companyId, trackChanges);
             if (company is null)
             {
                 throw new CompanyNotFoundException(companyId);
@@ -31,94 +31,87 @@ namespace Service
             Employee employeeEntity = _mapper.Map<Employee>(employeeForCreation);
 
             _repository.Employee.CreateEmployeeForCompany(companyId, employeeEntity);
-            _repository.Save();
+            await _repository.SaveAsync();
 
             EmployeeDto employeeToReturn = _mapper.Map<EmployeeDto>(employeeEntity);
             return employeeToReturn;
         }
 
-        public void DeleteEmployeeForCompany(Guid companyId, Guid id, bool trackChanges)
+        public async Task DeleteEmployeeForCompanyAsync(Guid companyId, Guid id, bool trackChanges)
         {
-            Company? company = _repository.Company.GetCompany(companyId, trackChanges);
+            Company? company = await _repository.Company.GetCompanyAsync(companyId, trackChanges);
             if (company is null)
             {
                 throw new CompanyNotFoundException(companyId);
             }
 
-            Employee? employeeForCompany = _repository.Employee.GetEmployee(companyId, id, trackChanges);
+            Employee? employeeForCompany = await _repository.Employee.GetEmployeeAsync(companyId, id, trackChanges);
             if (employeeForCompany is null)
             {
                 throw new EmployeeNotFoundException(id);
             }
 
             _repository.Employee.DeleteEmployee(employeeForCompany);
-            _repository.Save();
+            await _repository.SaveAsync();
         }
 
-        public EmployeeDto GetEmployee(Guid companyId, Guid id, bool trackChanges)
+        public async Task<EmployeeDto> GetEmployeeAsync(Guid companyId, Guid id, bool trackChanges)
         {
-            Company? company = _repository.Company.GetCompany(companyId, trackChanges);
+            var company = await _repository.Company.GetCompanyAsync(companyId, trackChanges);
             if (company is null)
-            {
                 throw new CompanyNotFoundException(companyId);
-            }
 
-            Employee? employeeDb = _repository.Employee.GetEmployee(companyId, id, trackChanges);
+            var employeeDb = await _repository.Employee.GetEmployeeAsync(companyId, id, trackChanges);
             if (employeeDb is null)
-            {
                 throw new EmployeeNotFoundException(id);
-            }
 
-            EmployeeDto employee = _mapper.Map<EmployeeDto>(employeeDb);
+            var employee = _mapper.Map<EmployeeDto>(employeeDb);
             return employee;
         }
 
-        public (EmployeeForUpdateDto employeeToPatch, Employee employeeEntity) GetEmployeeForPatch(Guid companyId, Guid id, bool compTrackChanges, bool empTrackChanges)
+        public async Task<(EmployeeForUpdateDto employeeToPatch, Employee employeeEntity)> GetEmployeeForPatchAsync
+        (Guid companyId, Guid id, bool compTrackChanges, bool empTrackChanges)
         {
-            Company? company = _repository.Company.GetCompany(companyId, compTrackChanges);
+            var company = await _repository.Company.GetCompanyAsync(companyId, compTrackChanges);
             if (company is null)
-            {
                 throw new CompanyNotFoundException(companyId);
-            }
 
-            Employee? employeeEntity = _repository.Employee.GetEmployee(companyId, id, empTrackChanges);
+            var employeeEntity = await _repository.Employee.GetEmployeeAsync(companyId, id, empTrackChanges);
             if (employeeEntity is null)
-            {
-                throw new EmployeeNotFoundException(id);
-            }
+                throw new EmployeeNotFoundException(companyId);
 
-            EmployeeForUpdateDto employeeToPatch = _mapper.Map<EmployeeForUpdateDto>(employeeEntity);
+            var employeeToPatch = _mapper.Map<EmployeeForUpdateDto>(employeeEntity);
+
             return (employeeToPatch, employeeEntity);
         }
 
-        public IEnumerable<EmployeeDto> GetEmployees(Guid companyId, bool trackChanges)
+        public async Task<IEnumerable<EmployeeDto>> GetEmployeesAsync(Guid companyId, bool trackChanges)
         {
-            Company? company = _repository.Company.GetCompany(companyId, trackChanges);
+            var company = await _repository.Company.GetCompanyAsync(companyId, trackChanges);
             if (company is null)
-            {
                 throw new CompanyNotFoundException(companyId);
-            }
 
-            IEnumerable<Employee> employeesFromDb = _repository.Employee.GetEmployees(companyId, trackChanges);
-            IEnumerable<EmployeeDto> employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesFromDb);
+            var employeesFromDb = await _repository.Employee.GetEmployeesAsync(companyId, trackChanges);
+            var employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesFromDb);
+
             return employeesDto;
         }
 
-        public void SaveChangesForPatch(EmployeeForUpdateDto employeeToPatch, Employee employeeEntity)
+        public async Task SaveChangesForPatchAsync(EmployeeForUpdateDto employeeToPatch, Employee employeeEntity)
         {
             _mapper.Map(employeeToPatch, employeeEntity);
-            _repository.Save();
+            await _repository.SaveAsync();
         }
 
-        public void UpdateEmployeeForCompany(Guid companyId, Guid id, EmployeeForUpdateDto employeeForUpdate, bool compTrackChanges, bool empTrackChanges)
+        public async Task UpdateEmployeeForCompanyAsync(Guid companyId, Guid id, EmployeeForUpdateDto employeeForUpdate, bool compTrackChanges, bool empTrackChanges)
         {
-            Company? company = _repository.Company.GetCompany(companyId, compTrackChanges);
+            Company? company = await _repository.Company.GetCompanyAsync(companyId, compTrackChanges);
             if (company is null)
             {
                 throw new CompanyNotFoundException(companyId);
             }
 
-            Employee? employeeEntity = _repository.Employee.GetEmployee(companyId, id, empTrackChanges);
+            Employee? employeeEntity = await _repository.Employee.GetEmployeeAsync(companyId, id, empTrackChanges);
             if (employeeEntity is null)
             {
                 throw new EmployeeNotFoundException(id);
@@ -133,7 +126,7 @@ namespace Service
             //// Because our entity has a modified state,
             //// it is enough to call the Save method without any additional update actions.
             //// As soon as we call the Save method, our entity is going to be updated in the database.
-            _repository.Save();
+            await _repository.SaveAsync();
         }
     }
 }
