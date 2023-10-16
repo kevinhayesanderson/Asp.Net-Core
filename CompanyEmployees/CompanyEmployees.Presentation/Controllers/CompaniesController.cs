@@ -41,6 +41,9 @@ namespace CompanyEmployees.Presentation.Controllers
                 return BadRequest("CompanyForCreationDto object is null");
             }
 
+            if (!ModelState.IsValid)
+			return UnprocessableEntity(ModelState);
+
             CompanyDto createdCompany = _service.CompanyService.CreateCompany(company);
 
             //// CreatedAtRoute will return a status code 201, which stands for Created.
@@ -79,6 +82,9 @@ namespace CompanyEmployees.Presentation.Controllers
         {
             if (company == null)
                 return BadRequest("CompanyForUpdateDto object is null");
+
+            if (!ModelState.IsValid)
+			return UnprocessableEntity(ModelState);
 
             _service.CompanyService.UpdateCompany(id, company, trackChanges: true);
 

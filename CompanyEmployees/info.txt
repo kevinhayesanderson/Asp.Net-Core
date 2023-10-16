@@ -141,3 +141,39 @@ Moves the value from a property in the “from” part to a property in the “p
 
 Test: { "op": "test", "path": "/name", "value": "new value" }
 Tests if a property has a specified value.
+
+
+Validation:
+validate against validation rules applied by Data Annotation attributes, 
+we are going to use the concept of ModelState.
+It is a dictionary containing the state of the model and model binding validation.
+model validation occurs after model binding and reports errors where the data, sent from the client.
+Both model validation and data binding occur before our request reaches an action inside a controller.
+ModelState.IsValid expression to check for those validation rules.
+The response status code, when validation fails, should be 422 Unprocessable Entity.
+
+Built-in Attributes:
+https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-5.0
+[ValidateNever] 
+Indicates that property or parameter should be excluded from validation.
+
+[Compare]
+We use it for the properties comparison. 
+
+[EmailAddress] 
+Validates the email format of the property.
+
+[Phone]
+Validates the phone format of the property. 
+
+[Range] 
+Validates that the property falls within a specified range.
+
+[RegularExpression] 
+Validates that the property value matches a specified regular expression. 
+
+[Required] 
+We use it to prevent a null value for the property.
+
+[StringLength]
+Validates that a string property value doesn't exceed a specified length limit.
