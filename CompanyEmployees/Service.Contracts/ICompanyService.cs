@@ -16,6 +16,6 @@ namespace Service.Contracts
 
         Task DeleteCompanyAsync(Guid companyId, bool trackChanges);
 
-        Task UpdateCompanyAsync(Guid companyid, CompanyForUpdateDto companyForUpdate, bool trackChanges);
+        Task UpdateCompanyAsync(Guid companyId, CompanyForUpdateDto companyForUpdate, bool trackChanges);
     }
 }

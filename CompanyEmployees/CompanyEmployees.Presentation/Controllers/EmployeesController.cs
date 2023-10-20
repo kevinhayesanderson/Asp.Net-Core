@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
+﻿using CompanyEmployees.Presentation.ActionFilters;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using Shared.DataTransferObjects;
@@ -31,17 +32,19 @@ namespace CompanyEmployees.Presentation.Controllers
         }
 
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateEmployeeForCompany(Guid companyId, [FromBody] EmployeeForCreationDto employee)
         {
-            if (employee is null)
-            {
-                return BadRequest("EmployeeForCreationDto object is null");
-            }
+            //// Below commented code moved to action filter
+            //if (employee is null)
+            //{
+            //    return BadRequest("EmployeeForCreationDto object is null");
+            //}
 
-            if (!ModelState.IsValid)
-            {
-                return UnprocessableEntity(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return UnprocessableEntity(ModelState);
+            //}
 
             EmployeeDto employeeToReturn = await _service.EmployeeService.CreateEmployeeForCompanyAsync(companyId, employee, trackChanges: false);
 
@@ -58,17 +61,19 @@ namespace CompanyEmployees.Presentation.Controllers
         }
 
         [HttpPut("{id:guid}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] EmployeeForUpdateDto employee)
         {
-            if (employee is null)
-            {
-                return BadRequest("EmployeeForUpdateDto object is null");
-            }
+            //// Below commented code moved to action filter
+            //if (employee is null)
+            //{
+            //    return BadRequest("EmployeeForUpdateDto object is null");
+            //}
 
-            if (!ModelState.IsValid)
-            {
-                return UnprocessableEntity(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return UnprocessableEntity(ModelState);
+            //}
 
             await _service.EmployeeService.UpdateEmployeeForCompanyAsync(
                 companyId,
