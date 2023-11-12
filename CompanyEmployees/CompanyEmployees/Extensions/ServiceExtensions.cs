@@ -20,7 +20,8 @@ namespace CompanyEmployees.Extensions
                     _ = corsPolicyBuilder
                     .AllowAnyOrigin()   ////.WithOrigins("https://example.com")
                     .AllowAnyMethod()   ////.WithMethods("POST", "GET")
-                    .AllowAnyHeader();  ////.WithHeaders("accept", "content-type");
+                    .AllowAnyHeader()  ////.WithHeaders("accept", "content-type");
+                    .WithExposedHeaders("X-Pagination");
                 });
             });
         }

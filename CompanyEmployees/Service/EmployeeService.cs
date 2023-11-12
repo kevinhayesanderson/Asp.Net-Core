@@ -4,6 +4,7 @@ using Entities.Exceptions;
 using Entities.Models;
 using Service.Contracts;
 using Shared.DataTransferObjects;
+using Shared.RequestFeatures;
 
 namespace Service
 {
@@ -12,6 +13,7 @@ namespace Service
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
         private readonly IRepositoryManager _repository;
+
         public EmployeeService(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper)
         {
             _repository = repositoryManager;
@@ -68,15 +70,15 @@ namespace Service
             return (employeeToPatch, employeeEntity: employeeDb);
         }
 
-        public async Task<IEnumerable<EmployeeDto>> GetEmployeesAsync(Guid companyId, bool trackChanges)
+        public async Task<(IEnumerable<EmployeeDto> employees, MetaData metaData)> GetEmployeesAsync(Guid companyId, EmployeeParameters employeeParameters, bool trackChanges)
         {
             await CheckIfCompanyExists(companyId, trackChanges);
 
-            IEnumerable<Employee> employeesFromDb = await _repository.Employee.GetEmployeesAsync(companyId, trackChanges);
+            var employeesWithMetaDataFromDb = await _repository.Employee.GetEmployeesAsync(companyId, employeeParameters, trackChanges);
 
-            IEnumerable<EmployeeDto> employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesFromDb);
+            var employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesWithMetaDataFromDb);
 
-            return employeesDto;
+            return (employees: employeesDto, metaData: employeesWithMetaDataFromDb.MetaData);
         }
 
         public async Task SaveChangesForPatchAsync(EmployeeForUpdateDto employeeToPatch, Employee employeeEntity)
