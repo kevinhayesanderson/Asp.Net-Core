@@ -8,18 +8,11 @@ using Shared.RequestFeatures;
 
 namespace Service
 {
-    internal sealed class EmployeeService : IEmployeeService
+    internal sealed class EmployeeService(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper) : IEmployeeService
     {
-        private readonly ILoggerManager _logger;
-        private readonly IMapper _mapper;
-        private readonly IRepositoryManager _repository;
-
-        public EmployeeService(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper)
-        {
-            _repository = repositoryManager;
-            _logger = logger;
-            _mapper = mapper;
-        }
+        private readonly ILoggerManager _logger = logger;
+        private readonly IMapper _mapper = mapper;
+        private readonly IRepositoryManager _repository = repositoryManager;
 
         public async Task<EmployeeDto> CreateEmployeeForCompanyAsync(Guid companyId, EmployeeForCreationDto employeeForCreation, bool trackChanges)
         {
@@ -72,6 +65,8 @@ namespace Service
 
         public async Task<(IEnumerable<EmployeeDto> employees, MetaData metaData)> GetEmployeesAsync(Guid companyId, EmployeeParameters employeeParameters, bool trackChanges)
         {
+            if (!employeeParameters.ValidAgeRange)
+                throw new MaxAgeRangeBadRequestException();
             await CheckIfCompanyExists(companyId, trackChanges);
 
             var employeesWithMetaDataFromDb = await _repository.Employee.GetEmployeesAsync(companyId, employeeParameters, trackChanges);

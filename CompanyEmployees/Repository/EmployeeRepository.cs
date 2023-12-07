@@ -5,12 +5,8 @@ using Shared.RequestFeatures;
 
 namespace Repository
 {
-    public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
+    public class EmployeeRepository(RepositoryContext repositoryContext) : RepositoryBase<Employee>(repositoryContext), IEmployeeRepository
     {
-        public EmployeeRepository(RepositoryContext repositoryContext) : base(repositoryContext)
-        {
-        }
-
         public void CreateEmployeeForCompany(Guid companyId, Employee employee)
         {
             employee.CompanyId = companyId;
@@ -25,7 +21,9 @@ namespace Repository
         //// table has few rows
         public async Task<PagedList<Employee>> GetEmployeesAsync(Guid companyId, EmployeeParameters employeeParameters, bool trackChanges)
         {
-            var employees = await FindByCondition(e => e.CompanyId.Equals(companyId), trackChanges)
+            var employees = await FindByCondition(e =>
+            e.CompanyId.Equals(companyId) && e.Age >= employeeParameters.MinAge && e.Age <= employeeParameters.MaxAge
+            , trackChanges)
                 .OrderBy(e => e.Name)
                 .ToListAsync();
 

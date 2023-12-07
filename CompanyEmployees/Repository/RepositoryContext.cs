@@ -4,12 +4,8 @@ using Repository.Configuration;
 
 namespace Repository
 {
-    public class RepositoryContext : DbContext
+    public class RepositoryContext(DbContextOptions dbContextOptions) : DbContext(dbContextOptions)
     {
-        public RepositoryContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
-        {
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CompanyConfiguration());

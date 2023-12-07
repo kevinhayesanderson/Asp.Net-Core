@@ -4,12 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Repository
 {
-    public class CompanyRepository : RepositoryBase<Company>, ICompanyRepository
+    public class CompanyRepository(RepositoryContext repositoryContext) : RepositoryBase<Company>(repositoryContext), ICompanyRepository
     {
-        public CompanyRepository(RepositoryContext repositoryContext) : base(repositoryContext)
-        {
-        }
-
         public async Task<IEnumerable<Company>> GetAllCompaniesAsync(bool trackChanges) =>
             await FindAll(trackChanges)
             .OrderBy(c => c.Name)

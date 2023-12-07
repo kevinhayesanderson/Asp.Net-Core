@@ -8,14 +8,9 @@ namespace CompanyEmployees.Presentation.Controllers
 {
     [Route("api/companies")]
     [ApiController]
-    public class CompaniesController : ControllerBase // add <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    public class CompaniesController(IServiceManager service) : ControllerBase // add <FrameworkReference Include="Microsoft.AspNetCore.App" />
     {
-        private readonly IServiceManager _service;
-
-        public CompaniesController(IServiceManager service)
-        {
-            _service = service;
-        }
+        private readonly IServiceManager _service = service;
 
         //// Because there is no route attribute right above the action,
         //// the route for the GetCompanies action will be api/companies which is the route placed on top of our controller.
