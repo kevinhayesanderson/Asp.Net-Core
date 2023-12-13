@@ -8,10 +8,11 @@ using Shared.RequestFeatures;
 
 namespace Service
 {
-    internal sealed class EmployeeService(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper) : IEmployeeService
+    internal sealed class EmployeeService(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper, IDataShaper<EmployeeDto> dataShaper) : IEmployeeService
     {
         private readonly ILoggerManager _logger = logger;
         private readonly IMapper _mapper = mapper;
+        private readonly IDataShaper<EmployeeDto> _dataShaper = dataShaper;
         private readonly IRepositoryManager _repository = repositoryManager;
 
         public async Task<EmployeeDto> CreateEmployeeForCompanyAsync(Guid companyId, EmployeeForCreationDto employeeForCreation, bool trackChanges)
@@ -63,7 +64,7 @@ namespace Service
             return (employeeToPatch, employeeEntity: employeeDb);
         }
 
-        public async Task<(IEnumerable<EmployeeDto> employees, MetaData metaData)> GetEmployeesAsync(Guid companyId, EmployeeParameters employeeParameters, bool trackChanges)
+        public async Task<(IEnumerable<Entity> employees, MetaData metaData)> GetEmployeesAsync(Guid companyId, EmployeeParameters employeeParameters, bool trackChanges)
         {
             if (!employeeParameters.ValidAgeRange)
                 throw new MaxAgeRangeBadRequestException();
@@ -73,7 +74,9 @@ namespace Service
 
             var employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesWithMetaDataFromDb);
 
-            return (employees: employeesDto, metaData: employeesWithMetaDataFromDb.MetaData);
+            var shapedData = _dataShaper.ShapeData(employeesDto, employeeParameters.Fields);
+
+            return (employees: shapedData, metaData: employeesWithMetaDataFromDb.MetaData);
         }
 
         public async Task SaveChangesForPatchAsync(EmployeeForUpdateDto employeeToPatch, Employee employeeEntity)

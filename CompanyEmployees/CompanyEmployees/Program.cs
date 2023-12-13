@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Options;
 using NLog;
+using Service.DataShaping;
+using Shared.DataTransferObjects;
 
 namespace CompanyEmployees
 {
@@ -50,6 +52,8 @@ namespace CompanyEmployees
                 .AddXmlDataContractSerializerFormatters()
                 .AddCustomCSVFormatter()
                 .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
+
+            builder.Services.AddScoped<IDataShaper<EmployeeDto>, DataShaper<EmployeeDto>>();
 
             WebApplication app = builder.Build();
 
