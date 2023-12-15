@@ -1,8 +1,8 @@
 ﻿using Contracts;
 using Entities.LinkModels;
 using Entities.Models;
-using System.Net.Http.Headers;
 using Shared.DataTransferObjects;
+using System.Net.Http.Headers;
 
 namespace CompanyEmployees.Utility;
 
@@ -51,8 +51,8 @@ public class EmployeeLinks(LinkGenerator linkGenerator, IDataShaper<EmployeeDto>
         new LinkResponse { ShapedEntities = shapedEmployees };
 
     /// <summary>
-    /// In this method, we iterate through each employee and create links for it by calling the CreateLinksForEmployee method. 
-    /// Then, we just add it to the shapedEmployees collection. 
+    /// In this method, we iterate through each employee and create links for it by calling the CreateLinksForEmployee method.
+    /// Then, we just add it to the shapedEmployees collection.
     /// After that, we wrap the collection and create links that are important for the entire collection by calling the CreateLinksForEmployees method.
     /// </summary>
     /// <param name="employeesDto"></param>

@@ -1,0 +1,15 @@
+To set which environment our application runs on, 
+we need to set up the ASPNETCORE_ENVIRONMENT environment variable.
+
+We can set the variable through the command prompt by typing 
+set ASPNETCORE_ENVIRONMENT=Production in Windows 
+or 
+export ASPNET_CORE_ENVIRONMENT=Production in Linux.
+
+ASP.NET Core applications use the value of that environment variable to decide which appsettings file to use accordingly.
+
+ASP.NET Core middleware -> code section that executes with every request.
+
+	more than a single middlerware component
+	each component can pass the request to the next middlerware component in the pipeline
+	each component can execute some work before and after the next component in the pipeline

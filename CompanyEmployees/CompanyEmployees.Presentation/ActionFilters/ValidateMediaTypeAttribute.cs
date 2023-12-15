@@ -8,7 +8,6 @@ namespace CompanyEmployees.Presentation.ActionFilters
     {
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            
         }
 
         //// Before action

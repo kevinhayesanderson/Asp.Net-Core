@@ -4,7 +4,6 @@
     {
         public LinkResourceBase()
         {
-
         }
 
         public List<Link> Links { get; set; } = [];

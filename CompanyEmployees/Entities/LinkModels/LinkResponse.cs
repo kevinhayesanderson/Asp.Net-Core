@@ -3,8 +3,8 @@
 namespace Entities.LinkModels
 {
     /// <summary>
-    /// With this class, we are going to know whether our response has links. 
-    /// If it does, we are going to use the LinkedEntities property. 
+    /// With this class, we are going to know whether our response has links.
+    /// If it does, we are going to use the LinkedEntities property.
     /// Otherwise, we are going to use the ShapedEntities property.
     /// </summary>
     public class LinkResponse

@@ -1923,12 +1923,12 @@
 							}
 						],
 						"url": {
-							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?fields=name,age",
+							"raw": "https://localhost:7206/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?fields=name,age",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "5001",
+							"port": "7206",
 							"path": [
 								"api",
 								"companies",
@@ -1956,12 +1956,12 @@
 							}
 						],
 						"url": {
-							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=26&maxAge=32&searchTerm=A&orderBy=name desc&fields=name,age",
+							"raw": "https://localhost:7206/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=26&maxAge=32&searchTerm=A&orderBy=name desc&fields=name,age",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "5001",
+							"port": "7206",
 							"path": [
 								"api",
 								"companies",
@@ -2013,12 +2013,12 @@
 							}
 						],
 						"url": {
-							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=26&maxAge=32&searchTerm=A&orderBy=name desc&fields=name,age",
+							"raw": "https://localhost:7206/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=26&maxAge=32&searchTerm=A&orderBy=name desc&fields=name,age",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "5001",
+							"port": "7206",
 							"path": [
 								"api",
 								"companies",
@@ -2071,16 +2071,16 @@
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/vnd.codemaze.hateoas+json"
+								"value": "application/vnd.kevin.hateoas+json"
 							}
 						],
 						"url": {
-							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=26&maxAge=32&searchTerm=A&orderBy=name desc&fields=name,age",
+							"raw": "https://localhost:7206/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=26&maxAge=32&searchTerm=A&orderBy=name desc&fields=name,age",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "5001",
+							"port": "7206",
 							"path": [
 								"api",
 								"companies",
@@ -2128,16 +2128,16 @@
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/vnd.codemaze.hateoas+xml"
+								"value": "application/vnd.kevin.hateoas+xml"
 							}
 						],
 						"url": {
-							"raw": "https://localhost:5001/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=26&maxAge=32&searchTerm=A&orderBy=name desc&fields=name,age",
+							"raw": "https://localhost:7206/api/companies/C9D4C053-49B6-410C-BC78-2D54A9991870/employees?pageNumber=1&pageSize=4&minAge=26&maxAge=32&searchTerm=A&orderBy=name desc&fields=name,age",
 							"protocol": "https",
 							"host": [
 								"localhost"
 							],
-							"port": "5001",
+							"port": "7206",
 							"path": [
 								"api",
 								"companies",

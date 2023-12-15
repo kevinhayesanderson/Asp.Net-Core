@@ -6,7 +6,6 @@
 
         public LinkCollectionWrapper()
         {
-
         }
 
         public LinkCollectionWrapper(List<T> value)

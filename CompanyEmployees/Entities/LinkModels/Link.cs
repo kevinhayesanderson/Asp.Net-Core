@@ -4,7 +4,6 @@
     {
         public Link()
         {
-
         }
 
         public Link(string href, string rel, string method)

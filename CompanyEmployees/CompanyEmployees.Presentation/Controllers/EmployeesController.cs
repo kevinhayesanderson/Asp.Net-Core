@@ -17,7 +17,7 @@ namespace CompanyEmployees.Presentation.Controllers
 
         [HttpGet]
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
-        public async Task<IActionResult> GetEmployeesForCompany(Guid companyId, 
+        public async Task<IActionResult> GetEmployeesForCompany(Guid companyId,
             [FromQuery] EmployeeParameters employeeParameters)
         {
             var linkParams = new LinkParameters(employeeParameters, HttpContext);
@@ -26,8 +26,8 @@ namespace CompanyEmployees.Presentation.Controllers
 
             Response.Headers["X-Pagination"] = JsonSerializer.Serialize(result.metaData);
 
-            return result.linkResponse.HasLinks ? 
-                Ok(result.linkResponse.LinkedEntities) : 
+            return result.linkResponse.HasLinks ?
+                Ok(result.linkResponse.LinkedEntities) :
                 Ok(result.linkResponse.ShapedEntities);
         }
 

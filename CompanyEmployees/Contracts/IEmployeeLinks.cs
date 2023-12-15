@@ -1,7 +1,6 @@
 ﻿using Entities.LinkModels;
 using Microsoft.AspNetCore.Http;
 using Shared.DataTransferObjects;
-using System.Net.Http;
 
 namespace Contracts;
 
