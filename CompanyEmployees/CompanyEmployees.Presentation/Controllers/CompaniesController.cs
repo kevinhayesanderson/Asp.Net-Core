@@ -8,13 +8,12 @@ namespace CompanyEmployees.Presentation.Controllers
 {
     [Route("api/companies")]
     [ApiController]
-    public class CompaniesController(IServiceManager service) : ControllerBase // add <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    public class CompaniesController(IServiceManager _service) : ControllerBase // add <FrameworkReference Include="Microsoft.AspNetCore.App" />
     {
-        private readonly IServiceManager _service = service;
-
+        
         //// Because there is no route attribute right above the action,
         //// the route for the GetCompanies action will be api/companies which is the route placed on top of our controller.
-        [HttpGet]
+        [HttpGet(Name = "GetCompanies")]
         public async Task<IActionResult> GetCompanies()
         {
             //// throw new Exception("Exception Test");
@@ -29,18 +28,25 @@ namespace CompanyEmployees.Presentation.Controllers
             return Ok(company);
         }
 
-        [HttpPost]
+        [HttpOptions]
+        public IActionResult GetCompaniesOptions()
+        {
+            Response.Headers.Allow = "GET, OPTIONS, POST";
+            return Ok();
+        }
+
+        [HttpPost(Name = "CreateCompany")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCompany([FromBody] CompanyForCreationDto company)
         {
             //// Below commented code moved to action filter
-            //if (company is null)
-            //{
-            //    return BadRequest("CompanyForCreationDto object is null");
-            //}
+            ////if (company is null)
+            ////{
+            ////    return BadRequest("CompanyForCreationDto object is null");
+            ////}
 
-            //if (!ModelState.IsValid)
-            //    return UnprocessableEntity(ModelState);
+            ////if (!ModelState.IsValid)
+            ////    return UnprocessableEntity(ModelState);
 
             CompanyDto createdCompany = await _service.CompanyService.CreateCompanyAsync(company);
 
@@ -78,11 +84,11 @@ namespace CompanyEmployees.Presentation.Controllers
         public async Task<IActionResult> UpdateCompany(Guid id, [FromBody] CompanyForUpdateDto company)
         {
             //// Below commented code moved to action filter
-            //if (company == null)
-            //    return BadRequest("CompanyForUpdateDto object is null");
+            ////if (company == null)
+            ////    return BadRequest("CompanyForUpdateDto object is null");
 
-            //if (!ModelState.IsValid)
-            //    return UnprocessableEntity(ModelState);
+            ////if (!ModelState.IsValid)
+            ////    return UnprocessableEntity(ModelState);
 
             await _service.CompanyService.UpdateCompanyAsync(id, company, trackChanges: true);
 

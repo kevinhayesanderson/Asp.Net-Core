@@ -13,8 +13,8 @@
             Method = method;
         }
 
-        public string? Href { get; }
-        public string? Rel { get; }
-        public string? Method { get; }
+        public string Href { get; set; }
+        public string Rel { get; set; }
+        public string Method { get; set; }
     }
 }

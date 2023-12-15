@@ -69,12 +69,17 @@ namespace CompanyEmployees.Extensions
                 var systemTextJsonOutputFormatter = config.OutputFormatters
                 .OfType<SystemTextJsonOutputFormatter>()
                 ?.FirstOrDefault();
+
                 systemTextJsonOutputFormatter?.SupportedMediaTypes.Add("application/vnd.kevin.hateoas+json");
+                systemTextJsonOutputFormatter?.SupportedMediaTypes.Add("application/vnd.kevin.apiroot+json");
+
 
                 var xmlOutputFormatter = config.OutputFormatters
                 .OfType<XmlDataContractSerializerOutputFormatter>()
                 ?.FirstOrDefault();
+                
                 xmlOutputFormatter?.SupportedMediaTypes.Add("application/vnd.kevin.hateoas+xml");
+                xmlOutputFormatter?.SupportedMediaTypes.Add("application/vnd.kevin.apiroot+xml");
             });
         }
     }
