@@ -11,13 +11,10 @@ namespace CompanyEmployees.Utility;
 /// </summary>
 /// <param name="linkGenerator"></param>
 /// <param name="dataShaper"></param>
-public class EmployeeLinks(LinkGenerator linkGenerator, IDataShaper<EmployeeDto> dataShaper) : IEmployeeLinks
+public class EmployeeLinks(LinkGenerator _linkGenerator, IDataShaper<EmployeeDto> _dataShaper) : IEmployeeLinks
 {
-    private readonly LinkGenerator _linkGenerator = linkGenerator;
-    private readonly IDataShaper<EmployeeDto> _dataShaper = dataShaper;
 
-    public Dictionary<string, MediaTypeHeaderValue> AcceptHeader { get; set; } =
-        new Dictionary<string, MediaTypeHeaderValue>();
+    ////public Dictionary<string, MediaTypeHeaderValue> AcceptHeader { get; set; } = new Dictionary<string, MediaTypeHeaderValue>();
 
     public LinkResponse TryGenerateLinks(IEnumerable<EmployeeDto> employeesDto, string fields, Guid companyId,
         HttpContext httpContext)
@@ -48,7 +45,8 @@ public class EmployeeLinks(LinkGenerator linkGenerator, IDataShaper<EmployeeDto>
     }
 
     private static LinkResponse ReturnShapedEmployees(List<Entity> shapedEmployees) =>
-        new LinkResponse { ShapedEntities = shapedEmployees };
+        new()
+        { ShapedEntities = shapedEmployees };
 
     /// <summary>
     /// In this method, we iterate through each employee and create links for it by calling the CreateLinksForEmployee method.
@@ -66,7 +64,7 @@ public class EmployeeLinks(LinkGenerator linkGenerator, IDataShaper<EmployeeDto>
     {
         var employeeDtoList = employeesDto.ToList();
 
-        for (var index = 0; index < employeeDtoList.Count(); index++)
+        for (var index = 0; index < employeeDtoList.Count; index++)
         {
             var employeeLinks = CreateLinksForEmployee(httpContext, companyId, employeeDtoList[index].Id, fields);
             shapedEmployees[index].Add("Links", employeeLinks);
@@ -82,16 +80,16 @@ public class EmployeeLinks(LinkGenerator linkGenerator, IDataShaper<EmployeeDto>
     {
         var links = new List<Link>
             {
-                new Link(_linkGenerator.GetUriByAction(httpContext, "GetEmployeeForCompany", values: new { companyId, id, fields }),
+                new(_linkGenerator.GetUriByAction(httpContext, "GetEmployeeForCompany", values: new { companyId, id, fields })!,
                 "self",
                 "GET"),
-                new Link(_linkGenerator.GetUriByAction(httpContext, "DeleteEmployeeForCompany", values: new { companyId, id }),
+                new(_linkGenerator.GetUriByAction(httpContext, "DeleteEmployeeForCompany", values: new { companyId, id })!,
                 "delete_employee",
                 "DELETE"),
-                new Link(_linkGenerator.GetUriByAction(httpContext, "UpdateEmployeeForCompany", values: new { companyId, id }),
+                new(_linkGenerator.GetUriByAction(httpContext, "UpdateEmployeeForCompany", values: new { companyId, id })!,
                 "update_employee",
                 "PUT"),
-                new Link(_linkGenerator.GetUriByAction(httpContext, "PartiallyUpdateEmployeeForCompany", values: new { companyId, id }),
+                new(_linkGenerator.GetUriByAction(httpContext, "PartiallyUpdateEmployeeForCompany", values: new { companyId, id })!,
                 "partially_update_employee",
                 "PATCH")
             };
@@ -101,7 +99,7 @@ public class EmployeeLinks(LinkGenerator linkGenerator, IDataShaper<EmployeeDto>
     private LinkCollectionWrapper<Entity> CreateLinksForEmployees(HttpContext httpContext,
         LinkCollectionWrapper<Entity> employeesWrapper)
     {
-        employeesWrapper.Links.Add(new Link(_linkGenerator.GetUriByAction(httpContext, "GetEmployeesForCompany", values: new { }),
+        employeesWrapper.Links.Add(new Link(_linkGenerator.GetUriByAction(httpContext, "GetEmployeesForCompany", values: new { })!,
                 "self",
                 "GET"));
 

@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using CompanyEmployees.Extensions;
 using CompanyEmployees.Presentation.ActionFilters;
 using CompanyEmployees.Utility;
@@ -68,6 +69,12 @@ namespace CompanyEmployees
 
             builder.Services.ConfigureHttpCacheHeaders();
 
+            builder.Services.AddMemoryCache();
+
+            builder.Services.ConfigureRateLimitingOptions();
+
+            builder.Services.AddHttpContextAccessor();
+
             WebApplication app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -93,6 +100,8 @@ namespace CompanyEmployees
             {
                 ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.All
             });//// will forward proxy headers to the current request
+
+            _ = app.UseIpRateLimiting();
 
             _ = app.UseCors("CorsPolicy");
 

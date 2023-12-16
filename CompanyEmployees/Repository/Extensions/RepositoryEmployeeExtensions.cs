@@ -16,7 +16,7 @@ namespace Repository.Extensions
 
             var lowerCaseTerm = searchTerm.Trim().ToLower();
 
-            return employees.Where(e => e.Name.ToLower().Contains(lowerCaseTerm));
+            return employees.Where(e => !string.IsNullOrEmpty(e.Name) && e.Name.Contains(lowerCaseTerm, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public static IQueryable<Employee> Sort(this IQueryable<Employee> employees, string? orderByQueryString)

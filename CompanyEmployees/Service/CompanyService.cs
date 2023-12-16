@@ -7,12 +7,8 @@ using Shared.DataTransferObjects;
 
 namespace Service
 {
-    internal sealed class CompanyService(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper) : ICompanyService
+    internal sealed class CompanyService(IRepositoryManager _repository, IMapper _mapper) : ICompanyService
     {
-        private readonly ILoggerManager _logger = logger;
-        private readonly IMapper _mapper = mapper;
-        private readonly IRepositoryManager _repository = repositoryManager;
-
         public async Task<CompanyDto> CreateCompanyAsync(CompanyForCreationDto company)
         {
             Company companyEntity = _mapper.Map<Company>(company);

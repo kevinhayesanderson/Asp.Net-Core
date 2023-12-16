@@ -9,12 +9,8 @@ using Shared.RequestFeatures;
 
 namespace Service
 {
-    internal sealed class EmployeeService(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper, IEmployeeLinks employeeLinks) : IEmployeeService
+    internal sealed class EmployeeService(IRepositoryManager _repository, IMapper _mapper, IEmployeeLinks _employeeLinks) : IEmployeeService
     {
-        private readonly ILoggerManager _logger = logger;
-        private readonly IMapper _mapper = mapper;
-        private readonly IEmployeeLinks _employeeLinks = employeeLinks;
-        private readonly IRepositoryManager _repository = repositoryManager;
 
         public async Task<EmployeeDto> CreateEmployeeForCompanyAsync(Guid companyId, EmployeeForCreationDto employeeForCreation, bool trackChanges)
         {
@@ -76,7 +72,7 @@ namespace Service
 
             var employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesWithMetaDataFromDb);
 
-            var links = _employeeLinks.TryGenerateLinks(employeesDto, linkParameters.EmployeeParameters.Fields, companyId, linkParameters.Context);
+            var links = _employeeLinks.TryGenerateLinks(employeesDto, linkParameters.EmployeeParameters.Fields!, companyId, linkParameters.Context);
 
             return (linkResponse: links, metaData: employeesWithMetaDataFromDb.MetaData);
         }

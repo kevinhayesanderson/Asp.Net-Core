@@ -4,12 +4,24 @@ using Service.Contracts;
 
 namespace Service
 {
-    public sealed class ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper, IEmployeeLinks employeeLinks) : IServiceManager
+    public sealed class ServiceManager(IRepositoryManager repositoryManager, IMapper mapper, IEmployeeLinks employeeLinks) : IServiceManager
     {
-        private readonly Lazy<ICompanyService> _companyService = new Lazy<ICompanyService>(() => new CompanyService(repositoryManager, logger, mapper));
-        private readonly Lazy<IEmployeeService> _employeeService = new Lazy<IEmployeeService>(() => new EmployeeService(repositoryManager, logger, mapper, employeeLinks));
+        private readonly Lazy<ICompanyService> _companyService =
+            new(
+                () => new CompanyService(repositoryManager, mapper),
+                LazyThreadSafetyMode.PublicationOnly);
+        private readonly Lazy<IEmployeeService> _employeeService =
+            new(
+                () => new EmployeeService(repositoryManager, mapper, employeeLinks),
+                LazyThreadSafetyMode.PublicationOnly);
 
-        public ICompanyService CompanyService => _companyService.Value;
+        public ICompanyService CompanyService
+        {
+            get
+            {
+                return _companyService.Value;
+            }
+        }
 
         public IEmployeeService EmployeeService => _employeeService.Value;
     }

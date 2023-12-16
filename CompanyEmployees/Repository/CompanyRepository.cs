@@ -11,10 +11,10 @@ namespace Repository
             .OrderBy(c => c.Name)
             .ToListAsync();
 
-        public async Task<Company> GetCompanyAsync(Guid companyId, bool trackChanges)
+        public async Task<Company?> GetCompanyAsync(Guid companyId, bool trackChanges)
         {
             return await FindByCondition(c => c.Id.Equals(companyId), trackChanges)
-            .SingleOrDefaultAsync()!;
+            .SingleOrDefaultAsync();
         }
 
         public void CreateCompany(Company company) => Create(company);

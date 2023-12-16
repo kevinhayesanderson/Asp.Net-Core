@@ -6,7 +6,7 @@ namespace Contracts
     {
         Task<IEnumerable<Company>> GetAllCompaniesAsync(bool trackChanges);
 
-        Task<Company> GetCompanyAsync(Guid companyId, bool trackChanges);
+        Task<Company?> GetCompanyAsync(Guid companyId, bool trackChanges);
 
         void CreateCompany(Company company);
 
