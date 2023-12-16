@@ -1,4 +1,5 @@
-﻿using CompanyEmployees.Presentation.ActionFilters;
+﻿using Asp.Versioning;
+using CompanyEmployees.Presentation.ActionFilters;
 using CompanyEmployees.Presentation.ModelBinders;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
@@ -6,6 +7,7 @@ using Shared.DataTransferObjects;
 
 namespace CompanyEmployees.Presentation.Controllers
 {
+    [ApiVersion("1.0")]
     [Route("api/companies")]
     [ApiController]
     public class CompaniesController(IServiceManager _service) : ControllerBase // add <FrameworkReference Include="Microsoft.AspNetCore.App" />
@@ -14,6 +16,7 @@ namespace CompanyEmployees.Presentation.Controllers
         //// Because there is no route attribute right above the action,
         //// the route for the GetCompanies action will be api/companies which is the route placed on top of our controller.
         [HttpGet(Name = "GetCompanies")]
+        //[Route("api/{v:apiVersion}/companies")]
         public async Task<IActionResult> GetCompanies()
         {
             //// throw new Exception("Exception Test");
@@ -22,6 +25,7 @@ namespace CompanyEmployees.Presentation.Controllers
         }
 
         [HttpGet("{id:guid}", Name = "CompanyById")]
+        
         public async Task<IActionResult> GetCompany(Guid id)
         {
             CompanyDto company = await _service.CompanyService.GetCompanyAsync(id, trackChanges: false);

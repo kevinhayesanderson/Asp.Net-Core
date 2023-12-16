@@ -61,6 +61,8 @@ namespace CompanyEmployees
 
             builder.Services.AddScoped<IEmployeeLinks, EmployeeLinks>();
 
+            builder.Services.ConfigureVersioning();
+
             WebApplication app = builder.Build();
 
             // Configure the HTTP request pipeline.
