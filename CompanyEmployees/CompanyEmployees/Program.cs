@@ -50,6 +50,7 @@ namespace CompanyEmployees
                 configure.RespectBrowserAcceptHeader = true;
                 configure.ReturnHttpNotAcceptable = true;
                 configure.InputFormatters.Insert(0, GetJsonPatchInputFormatter());
+                configure.CacheProfiles.Add("120SecondsDuration", new CacheProfile { Duration = 120 });
             })
                 .AddXmlDataContractSerializerFormatters()
                 .AddCustomCSVFormatter()
@@ -62,6 +63,10 @@ namespace CompanyEmployees
             builder.Services.AddScoped<IEmployeeLinks, EmployeeLinks>();
 
             builder.Services.ConfigureVersioning();
+
+            builder.Services.ConfigureResponseCaching();
+
+            builder.Services.ConfigureHttpCacheHeaders();
 
             WebApplication app = builder.Build();
 
@@ -90,6 +95,10 @@ namespace CompanyEmployees
             });//// will forward proxy headers to the current request
 
             _ = app.UseCors("CorsPolicy");
+
+            _ = app.UseResponseCaching();
+
+            _ = app.UseHttpCacheHeaders();
 
             _ = app.UseAuthorization();
 

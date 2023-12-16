@@ -1,16 +1,15 @@
 ﻿// Ignore Spelling: Cors
 
 using Asp.Versioning;
-using CompanyEmployees.Presentation.Controllers;
 using Contracts;
 using LoggerService;
+using Marvin.Cache.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Repository;
 using Service;
 using Service.Contracts;
-using System.Formats.Tar;
 
 namespace CompanyEmployees.Extensions
 {
@@ -71,7 +70,7 @@ namespace CompanyEmployees.Extensions
             {
                 var systemTextJsonOutputFormatter = config.OutputFormatters
                 .OfType<SystemTextJsonOutputFormatter>()
-                ?.FirstOrDefault();
+                .FirstOrDefault();
 
                 systemTextJsonOutputFormatter?.SupportedMediaTypes.Add("application/vnd.kevin.hateoas+json");
                 systemTextJsonOutputFormatter?.SupportedMediaTypes.Add("application/vnd.kevin.apiroot+json");
@@ -79,8 +78,8 @@ namespace CompanyEmployees.Extensions
 
                 var xmlOutputFormatter = config.OutputFormatters
                 .OfType<XmlDataContractSerializerOutputFormatter>()
-                ?.FirstOrDefault();
-                
+                .FirstOrDefault();
+
                 xmlOutputFormatter?.SupportedMediaTypes.Add("application/vnd.kevin.hateoas+xml");
                 xmlOutputFormatter?.SupportedMediaTypes.Add("application/vnd.kevin.apiroot+xml");
             });
@@ -98,6 +97,25 @@ namespace CompanyEmployees.Extensions
                 ////opt.Conventions.Controller<CompaniesController>().HasApiVersion(new ApiVersion(1, 0));
                 ////opt.Conventions.Controller<CompaniesV2Controller>().HasDeprecatedApiVersion(new ApiVersion(2, 0));
             });
+        }
+
+        public static void ConfigureResponseCaching(this IServiceCollection services)
+        {
+            services.AddResponseCaching();
+        }
+
+        public static void ConfigureHttpCacheHeaders(this IServiceCollection services)
+        {
+            services.AddHttpCacheHeaders(
+                (expirationOpt) => 
+                { 
+                    expirationOpt.MaxAge = 65; 
+                    expirationOpt.CacheLocation = CacheLocation.Private; 
+                }, 
+                (validationOpt) => 
+                { 
+                    validationOpt.MustRevalidate = true; 
+                });
         }
     }
 }
