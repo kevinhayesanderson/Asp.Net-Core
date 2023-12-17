@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Contracts;
+using Entities.ConfigurationModels;
 using Entities.Exceptions;
 using Entities.Models;
 using Microsoft.AspNetCore.Identity;
@@ -22,14 +23,30 @@ namespace Service
     /// <param name="userManager">
     /// This class is used to provide the APIs for managing users in a persistence store</param>
     /// <param name="configuration"></param>
-    internal class AuthenticationService(
-        ILoggerManager logger,
+    internal class AuthenticationService : IAuthenticationService
+    {
+        private readonly JwtConfiguration _jwtConfiguration;
+        private readonly ILoggerManager _logger;
+        private readonly IMapper _mapper;
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IConfiguration _configuration;
+        private User? _user;
+
+        public AuthenticationService(ILoggerManager logger,
         IMapper mapper,
         UserManager<User> userManager,
         RoleManager<IdentityRole> roleManager,
-        IConfiguration configuration) : IAuthenticationService
-    {
-        private User? _user;
+        IConfiguration configuration)
+        {
+            _logger = logger;
+            _mapper = mapper;
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _configuration = configuration;
+            _jwtConfiguration = new JwtConfiguration();
+            _configuration.Bind(_jwtConfiguration.Section, _jwtConfiguration);
+        }
 
         public async Task<TokenDto> CreateToken(bool populateExp)
         {
@@ -46,7 +63,7 @@ namespace Service
             if (populateExp)
                 _user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
 
-            await userManager.UpdateAsync(_user);
+            await _userManager.UpdateAsync(_user);
 
             var accessToken = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
 
@@ -69,7 +86,7 @@ namespace Service
                 new(ClaimTypes.Name, _user.UserName)
             };
 
-            var roles = await userManager.GetRolesAsync(_user);
+            var roles = await _userManager.GetRolesAsync(_user);
 
             foreach (var role in roles)
             {
@@ -81,37 +98,35 @@ namespace Service
 
         private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
         {
-            var jwtSettings = configuration.GetSection("JwtSettings");
-            var tokenOptions = new JwtSecurityToken(
-                issuer: jwtSettings["validIssuer"],
-                audience: jwtSettings["validAudience"],
+            return new JwtSecurityToken(
+                issuer: _jwtConfiguration.ValidIssuer,
+                audience: _jwtConfiguration.ValidAudience,
                 claims: claims, expires:
-                DateTime.Now.AddMinutes(Convert.ToDouble(jwtSettings["expires"])),
+                DateTime.Now.AddMinutes(Convert.ToDouble(_jwtConfiguration.Expires)),
                 signingCredentials: signingCredentials);
-            return tokenOptions;
         }
 
         public async Task<IdentityResult?> RegisterUser(UserForRegistrationDto userForRegistration)
         {
             if (userForRegistration.Password == null)
             {
-                logger.LogWarn($"{nameof(RegisterUser)}: User registration failed. Password is required.");
+                _logger.LogWarn($"{nameof(RegisterUser)}: User registration failed. Password is required.");
                 return null;
             }
 
-            var user = mapper.Map<User>(userForRegistration);
+            var user = _mapper.Map<User>(userForRegistration);
 
-            var result = await userManager.CreateAsync(user, userForRegistration.Password);
+            var result = await _userManager.CreateAsync(user, userForRegistration.Password);
 
             if (result.Succeeded && userForRegistration.Roles is ICollection<string> roles)
             {
                 foreach (var role in roles)
                 {
-                    var exists = await roleManager.RoleExistsAsync(role);
+                    var exists = await _roleManager.RoleExistsAsync(role);
 
                     if (exists)
                     {
-                        await userManager.AddToRoleAsync(user, role);
+                        await _userManager.AddToRoleAsync(user, role);
                     }
                 }
             }
@@ -130,16 +145,16 @@ namespace Service
         {
             if (userForAuth.UserName == null || userForAuth.Password == null)
             {
-                logger.LogWarn($"{nameof(ValidateUser)}: Authentication failed. user name or password is required.");
+                _logger.LogWarn($"{nameof(ValidateUser)}: Authentication failed. user name or password is required.");
                 return false;
             }
 
-            _user = await userManager.FindByNameAsync(userForAuth.UserName);
+            _user = await _userManager.FindByNameAsync(userForAuth.UserName);
 
-            var result = _user != null && await userManager.CheckPasswordAsync(_user, userForAuth.Password);
+            var result = _user != null && await _userManager.CheckPasswordAsync(_user, userForAuth.Password);
 
             if (!result)
-                logger.LogWarn($"{nameof(ValidateUser)}: Authentication failed. Wrong user name or password.");
+                _logger.LogWarn($"{nameof(ValidateUser)}: Authentication failed. Wrong user name or password.");
 
             return result;
         }
@@ -160,8 +175,6 @@ namespace Service
         /// <exception cref="SecurityTokenException"></exception>
         private ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
         {
-            var jwtSettings = configuration.GetSection("JwtSettings");
-
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateAudience = true,
@@ -172,8 +185,8 @@ namespace Service
 
                 ValidateLifetime = true,
 
-                ValidIssuer = jwtSettings["validIssuer"],
-                ValidAudience = jwtSettings["validAudience"]
+                ValidIssuer = _jwtConfiguration.ValidIssuer,
+                ValidAudience = _jwtConfiguration.ValidAudience
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -193,7 +206,7 @@ namespace Service
         {
             var principal = GetPrincipalFromExpiredToken(tokenDto.AccessToken);
 
-            var user = await userManager.FindByNameAsync(principal.Identity.Name);
+            var user = await _userManager.FindByNameAsync(principal.Identity.Name);
 
             //// If the user doesn’t exist, or the refresh tokens are not equal, or the refresh token has expired,
             //// we stop the flow returning the BadRequest response to the user.
