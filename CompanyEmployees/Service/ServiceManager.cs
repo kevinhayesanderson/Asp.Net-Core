@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Contracts;
+using Entities.ConfigurationModels;
 using Entities.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Service.Contracts;
 
 namespace Service
@@ -20,7 +21,7 @@ namespace Service
             UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager,
             ILoggerManager logger,
-            IConfiguration configuration)
+            IOptionsMonitor<JwtConfiguration> configuration)
         {
             _companyService = new(
                 () => new CompanyService(repositoryManager, mapper),

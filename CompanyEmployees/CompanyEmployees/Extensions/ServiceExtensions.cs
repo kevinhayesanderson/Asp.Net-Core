@@ -165,6 +165,8 @@ namespace CompanyEmployees.Extensions
         /// <param name="configuration"></param>
         public static void ConfigureJWT(this IServiceCollection services, IConfiguration configuration)
         {
+            //// using Binding to access configuration values is perfectly safe and cheap in this stage of the application’s lifetime.
+            //// Instead of options
             var jwtConfiguration = new JwtConfiguration();
             configuration.Bind(jwtConfiguration.Section, jwtConfiguration);
 
@@ -194,6 +196,11 @@ namespace CompanyEmployees.Extensions
                         //ClockSkew = TimeSpan.FromSeconds(1)
                     };
                 });
+        }
+
+        public static void AddJwtConfiguration(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.Configure<JwtConfiguration>(configuration.GetSection("JwtSettings"));
         }
     }
 }

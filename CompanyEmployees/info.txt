@@ -185,3 +185,8 @@ setx SECRET1 "KevinHayesAnderson1995SecretKey1" /M
 
 This is going to create a system environment variable with the name SECRET and the value CodeMazeSecretKey. 
 By using /M we specify that we want a system variable and not local.
+
+
+IOptionsSnapshot and IOptionsMonitor:
+the main difference between these two interfaces is that the IOptionsSnapshot service is registered as a scoped service and thus can’t be injected inside the singleton service. 
+On the other hand, IOptionsMonitor is registered as a singleton service and can be injected into any service lifetime.

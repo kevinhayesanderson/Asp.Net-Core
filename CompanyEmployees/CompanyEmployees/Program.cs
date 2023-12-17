@@ -81,6 +81,8 @@ namespace CompanyEmployees
 
             builder.Services.ConfigureJWT(builder.Configuration);
 
+            builder.Services.AddJwtConfiguration(builder.Configuration);
+
             WebApplication app = builder.Build();
 
             // Configure the HTTP request pipeline.
