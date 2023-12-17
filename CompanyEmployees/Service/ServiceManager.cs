@@ -19,6 +19,7 @@ namespace Service
             IEmployeeLinks employeeLinks,
             UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager,
+            ILoggerManager logger,
             IConfiguration configuration)
         {
             _companyService = new(
@@ -28,7 +29,7 @@ namespace Service
                 () => new EmployeeService(repositoryManager, mapper, employeeLinks),
                 LazyThreadSafetyMode.PublicationOnly);
             _authenticationService = new(
-                () => new AuthenticationService(mapper, userManager, roleManager, configuration),
+                () => new AuthenticationService(logger, mapper, userManager, roleManager, configuration),
                 LazyThreadSafetyMode.PublicationOnly);
         }
 

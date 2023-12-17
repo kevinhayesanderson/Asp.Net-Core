@@ -6,13 +6,16 @@ using Contracts;
 using Entities.Models;
 using LoggerService;
 using Marvin.Cache.Headers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Repository;
 using Service;
 using Service.Contracts;
+using System.Text;
 
 namespace CompanyEmployees.Extensions
 {
@@ -153,6 +156,43 @@ namespace CompanyEmployees.Extensions
             })
                 .AddEntityFrameworkStores<RepositoryContext>()
                 .AddDefaultTokenProviders();
+        }
+
+        /// <summary>
+        /// First, we extract the JwtSettings from the appsettings.json file and extract our environment variable
+        /// we register the JWT authentication middleware by calling the method AddAuthentication on the IServiceCollection interface.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        public static void ConfigureJWT(this IServiceCollection services, IConfiguration configuration)
+        {
+            var jwtSettings = configuration.GetSection("JwtSettings");
+            var secretKey = Environment.GetEnvironmentVariable("SECRET1");
+
+            services
+                .AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,//The issuer is the actual server that created the token
+                        ValidateAudience = true,//The receiver of the token is a valid recipient
+                        ValidateLifetime = true,//The token has not expired
+                        ValidateIssuerSigningKey = true,//The signing key is valid and is trusted by the server
+
+                        ValidIssuer = jwtSettings["validIssuer"],
+                        ValidAudience = jwtSettings["validAudience"],
+
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+
+                        ////the time difference between servers, which is embedded inside the token can be overridden with the ClockSkew property
+                        //ClockSkew = TimeSpan.FromSeconds(1)
+                    };
+                });
         }
     }
 }

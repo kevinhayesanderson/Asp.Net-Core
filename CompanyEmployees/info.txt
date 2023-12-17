@@ -177,3 +177,11 @@ We use it to prevent a null value for the property.
 
 [StringLength]
 Validates that a string property value doesn't exceed a specified length limit.
+
+
+JWT:
+setx SECRET "CodeMazeSecretKey" /M
+setx SECRET1 "KevinHayesAnderson1995SecretKey1" /M
+
+This is going to create a system environment variable with the name SECRET and the value CodeMazeSecretKey. 
+By using /M we specify that we want a system variable and not local.

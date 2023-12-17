@@ -79,6 +79,8 @@ namespace CompanyEmployees
 
             builder.Services.ConfigureIdentity();
 
+            builder.Services.ConfigureJWT(builder.Configuration);
+
             WebApplication app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -2,6 +2,7 @@
 using CompanyEmployees.Presentation.ActionFilters;
 using CompanyEmployees.Presentation.ModelBinders;
 using Marvin.Cache.Headers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using Shared.DataTransferObjects;
@@ -18,6 +19,7 @@ namespace CompanyEmployees.Presentation.Controllers
         //// Because there is no route attribute right above the action,
         //// the route for the GetCompanies action will be api/companies which is the route placed on top of our controller.
         [HttpGet(Name = "GetCompanies")]
+        [Authorize(Roles = "Manager")]
         //[Route("api/{v:apiVersion}/companies")]
         public async Task<IActionResult> GetCompanies()
         {

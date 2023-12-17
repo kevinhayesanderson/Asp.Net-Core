@@ -15,7 +15,11 @@ namespace CompanyEmployees.Presentation.Controllers
         {
             var result = await service.AuthenticationService.RegisterUser(userForRegistration);
 
-            if (!result.Succeeded)
+            if (result == null)
+            {
+                return BadRequest(ModelState);
+            }
+            else if (!result.Succeeded)
             {
                 foreach (var error in result.Errors)
                 {
@@ -24,6 +28,19 @@ namespace CompanyEmployees.Presentation.Controllers
                 return BadRequest(ModelState);
             }
             return StatusCode(201);
+        }
+
+        [HttpPost("login")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
+        {
+            if (!await service.AuthenticationService.ValidateUser(user))
+                return Unauthorized();
+
+            return Ok(new
+            {
+                Token = await service.AuthenticationService.CreateToken()
+            });
         }
     }
 }
