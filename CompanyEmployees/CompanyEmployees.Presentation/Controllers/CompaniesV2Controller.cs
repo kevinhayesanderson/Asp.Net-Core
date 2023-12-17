@@ -9,6 +9,7 @@ namespace CompanyEmployees.Presentation.Controllers
     //[Route("api/companies")]
     [Route("api/{v:apiVersion}/companies")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "v2")]
     public class CompaniesV2Controller(IServiceManager service) : ControllerBase
     {
         [HttpGet]

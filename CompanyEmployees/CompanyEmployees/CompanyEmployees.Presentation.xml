@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CompanyEmployees</name>
+    </assembly>
+    <members>
+        <member name="M:CompanyEmployees.Extensions.ServiceExtensions.ConfigureJWT(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            First, we extract the JwtSettings from the appsettings.json file and extract our environment variable
+            we register the JWT authentication middleware by calling the method AddAuthentication on the IServiceCollection interface.
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:CompanyEmployees.Migrations.DatabaseCreation">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.DatabaseCreation.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.DatabaseCreation.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.DatabaseCreation.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CompanyEmployees.Migrations.InitialData">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.InitialData.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.InitialData.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.InitialData.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CompanyEmployees.Migrations.CreatingIdentityTables">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.CreatingIdentityTables.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.CreatingIdentityTables.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.CreatingIdentityTables.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CompanyEmployees.Migrations.AddedRolesToDb">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.AddedRolesToDb.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.AddedRolesToDb.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.AddedRolesToDb.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CompanyEmployees.Migrations.AdditionalUserFiledsForRefreshToken">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.AdditionalUserFiledsForRefreshToken.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.AdditionalUserFiledsForRefreshToken.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CompanyEmployees.Migrations.AdditionalUserFiledsForRefreshToken.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CompanyEmployees.Utility.EmployeeLinks">
+            <summary>
+            We are going to use LinkGenerator to generate links for our responses and IDataShaper to shape our data.
+            </summary>
+            <param name="linkGenerator"></param>
+            <param name="dataShaper"></param>
+        </member>
+        <member name="M:CompanyEmployees.Utility.EmployeeLinks.#ctor(Microsoft.AspNetCore.Routing.LinkGenerator,Contracts.IDataShaper{Shared.DataTransferObjects.EmployeeDto})">
+            <summary>
+            We are going to use LinkGenerator to generate links for our responses and IDataShaper to shape our data.
+            </summary>
+            <param name="linkGenerator"></param>
+            <param name="dataShaper"></param>
+        </member>
+        <member name="M:CompanyEmployees.Utility.EmployeeLinks.ReturnLinkdedEmployees(System.Collections.Generic.IEnumerable{Shared.DataTransferObjects.EmployeeDto},System.String,System.Guid,Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.List{Entities.Models.Entity})">
+            <summary>
+            In this method, we iterate through each employee and create links for it by calling the CreateLinksForEmployee method.
+            Then, we just add it to the shapedEmployees collection.
+            After that, we wrap the collection and create links that are important for the entire collection by calling the CreateLinksForEmployees method.
+            </summary>
+            <param name="employeesDto"></param>
+            <param name="fields"></param>
+            <param name="companyId"></param>
+            <param name="httpContext"></param>
+            <param name="shapedEmployees"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

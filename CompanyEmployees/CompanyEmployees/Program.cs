@@ -83,6 +83,8 @@ namespace CompanyEmployees
 
             builder.Services.AddJwtConfiguration(builder.Configuration);
 
+            builder.Services.ConfigureSwagger();
+
             WebApplication app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -90,6 +92,13 @@ namespace CompanyEmployees
             ILoggerManager logger = app.Services.GetRequiredService<ILoggerManager>();
 
             app.ConfigureExceptionHandler(logger);
+
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Code Maze API v1");
+                s.SwaggerEndpoint("/swagger/v2/swagger.json", "Code Maze API v2");
+            });
 
             ////if (app.Environment.IsDevelopment())
             ////{
