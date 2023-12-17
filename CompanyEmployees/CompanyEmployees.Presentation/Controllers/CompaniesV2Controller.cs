@@ -12,11 +12,10 @@ namespace CompanyEmployees.Presentation.Controllers
     public class CompaniesV2Controller(IServiceManager service) : ControllerBase
     {
         [HttpGet]
-        
         public async Task<IActionResult> GetCompanies()
         {
             IEnumerable<CompanyDto> companies = await service.CompanyService.GetAllCompaniesAsync(trackChanges: false);
-            var companiesV2 = companies.Select(x => $"{x.Name} V2"); 
+            var companiesV2 = companies.Select(x => $"{x.Name} V2");
             return Ok(companiesV2);
         }
     }

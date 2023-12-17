@@ -13,7 +13,6 @@ namespace CompanyEmployees.Presentation.Controllers
     [ApiController]
     public class EmployeesController(IServiceManager _service) : ControllerBase
     {
-
         [HttpGet]
         [HttpHead]
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]

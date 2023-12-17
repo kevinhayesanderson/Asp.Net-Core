@@ -15,7 +15,7 @@ using System.Text;
 namespace Service
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="logger"></param>
     /// <param name="mapper"></param>
@@ -121,7 +121,7 @@ namespace Service
 
         /// <summary>
         /// we fetch the user from the database and check whether they exist and if the password matches.
-        /// The UserManager<TUser> class provides the FindByNameAsync method to find the user by user name and the CheckPasswordAsync 
+        /// The UserManager<TUser> class provides the FindByNameAsync method to find the user by user name and the CheckPasswordAsync
         ///     to verify the user’s password against the hashed password from the database.
         /// </summary>
         /// <param name="userForAuth"></param>
@@ -178,9 +178,7 @@ namespace Service
 
             var tokenHandler = new JwtSecurityTokenHandler();
 
-
             var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
-
 
             if (securityToken is not JwtSecurityToken jwtSecurityToken ||
                 !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
@@ -197,7 +195,7 @@ namespace Service
 
             var user = await userManager.FindByNameAsync(principal.Identity.Name);
 
-            //// If the user doesn’t exist, or the refresh tokens are not equal, or the refresh token has expired, 
+            //// If the user doesn’t exist, or the refresh tokens are not equal, or the refresh token has expired,
             //// we stop the flow returning the BadRequest response to the user.
 
             if (user == null

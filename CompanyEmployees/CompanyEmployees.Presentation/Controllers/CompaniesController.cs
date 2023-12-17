@@ -12,15 +12,12 @@ namespace CompanyEmployees.Presentation.Controllers
     [ApiVersion("1.0")]
     [Route("api/companies")]
     [ApiController]
-    //[ResponseCache(CacheProfileName = "120SecondsDuration")]
     public class CompaniesController(IServiceManager _service) : ControllerBase // add <FrameworkReference Include="Microsoft.AspNetCore.App" />
     {
-
         //// Because there is no route attribute right above the action,
         //// the route for the GetCompanies action will be api/companies which is the route placed on top of our controller.
         [HttpGet(Name = "GetCompanies")]
         [Authorize(Roles = "Manager")]
-        //[Route("api/{v:apiVersion}/companies")]
         public async Task<IActionResult> GetCompanies()
         {
             //// throw new Exception("Exception Test");
@@ -32,7 +29,6 @@ namespace CompanyEmployees.Presentation.Controllers
         //[ResponseCache(Duration = 60)]
         [HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 60)]
         [HttpCacheValidation(MustRevalidate = false)]
-
         public async Task<IActionResult> GetCompany(Guid id)
         {
             CompanyDto company = await _service.CompanyService.GetCompanyAsync(id, trackChanges: false);

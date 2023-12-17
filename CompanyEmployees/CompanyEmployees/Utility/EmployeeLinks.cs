@@ -13,7 +13,6 @@ namespace CompanyEmployees.Utility;
 /// <param name="dataShaper"></param>
 public class EmployeeLinks(LinkGenerator _linkGenerator, IDataShaper<EmployeeDto> _dataShaper) : IEmployeeLinks
 {
-
     ////public Dictionary<string, MediaTypeHeaderValue> AcceptHeader { get; set; } = new Dictionary<string, MediaTypeHeaderValue>();
 
     public LinkResponse TryGenerateLinks(IEnumerable<EmployeeDto> employeesDto, string fields, Guid companyId,

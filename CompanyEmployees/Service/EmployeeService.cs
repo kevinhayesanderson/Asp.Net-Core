@@ -11,7 +11,6 @@ namespace Service
 {
     internal sealed class EmployeeService(IRepositoryManager _repository, IMapper _mapper, IEmployeeLinks _employeeLinks) : IEmployeeService
     {
-
         public async Task<EmployeeDto> CreateEmployeeForCompanyAsync(Guid companyId, EmployeeForCreationDto employeeForCreation, bool trackChanges)
         {
             await CheckIfCompanyExists(companyId, trackChanges);

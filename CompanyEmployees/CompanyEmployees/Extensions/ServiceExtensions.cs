@@ -81,7 +81,6 @@ namespace CompanyEmployees.Extensions
                 systemTextJsonOutputFormatter?.SupportedMediaTypes.Add("application/vnd.kevin.hateoas+json");
                 systemTextJsonOutputFormatter?.SupportedMediaTypes.Add("application/vnd.kevin.apiroot+json");
 
-
                 var xmlOutputFormatter = config.OutputFormatters
                 .OfType<XmlDataContractSerializerOutputFormatter>()
                 .FirstOrDefault();
@@ -141,7 +140,6 @@ namespace CompanyEmployees.Extensions
             services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
             services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
         }
-
 
         public static void ConfigureIdentity(this IServiceCollection services)
         {
