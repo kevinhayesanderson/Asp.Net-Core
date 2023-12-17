@@ -3,8 +3,10 @@
 using Asp.Versioning;
 using AspNetCoreRateLimit;
 using Contracts;
+using Entities.Models;
 using LoggerService;
 using Marvin.Cache.Headers;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
@@ -108,32 +110,49 @@ namespace CompanyEmployees.Extensions
         public static void ConfigureHttpCacheHeaders(this IServiceCollection services)
         {
             services.AddHttpCacheHeaders(
-                (expirationOpt) => 
-                { 
-                    expirationOpt.MaxAge = 65; 
-                    expirationOpt.CacheLocation = CacheLocation.Private; 
-                }, 
-                (validationOpt) => 
-                { 
-                    validationOpt.MustRevalidate = true; 
+                (expirationOpt) =>
+                {
+                    expirationOpt.MaxAge = 65;
+                    expirationOpt.CacheLocation = CacheLocation.Private;
+                },
+                (validationOpt) =>
+                {
+                    validationOpt.MustRevalidate = true;
                 });
         }
 
         public static void ConfigureRateLimitingOptions(this IServiceCollection services)
-        { 
-            var rateLimitRules = new List<RateLimitRule> 
-            { 
-                new RateLimitRule 
-                { 
-                    Endpoint = "*", 
-                    Limit = 3, 
-                    Period = "5m" 
+        {
+            var rateLimitRules = new List<RateLimitRule>
+            {
+                new RateLimitRule
+                {
+                    Endpoint = "*",
+                    Limit = 30,
+                    Period = "5m"
                 }
-            }; 
-            services.Configure<IpRateLimitOptions>(opt => { opt.GeneralRules = rateLimitRules; }); 
-            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>(); 
-            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>(); 
-            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>(); 
-            services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>(); }
+            };
+            services.Configure<IpRateLimitOptions>(opt => { opt.GeneralRules = rateLimitRules; });
+            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+            services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+        }
+
+
+        public static void ConfigureIdentity(this IServiceCollection services)
+        {
+            _ = services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 10;
+                options.User.RequireUniqueEmail = true;
+            })
+                .AddEntityFrameworkStores<RepositoryContext>()
+                .AddDefaultTokenProviders();
+        }
     }
 }

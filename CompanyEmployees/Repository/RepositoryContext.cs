@@ -1,18 +1,31 @@
 ﻿using Entities.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Repository.Configuration;
 
 namespace Repository
 {
-    public class RepositoryContext(DbContextOptions dbContextOptions) : DbContext(dbContextOptions)
+    /// <summary>
+    /// So, our class now inherits from the IdentityDbContext class and not DbContext because we want to integrate our context with Identity.
+    /// </summary>
+    public class RepositoryContext : IdentityDbContext<User, IdentityRole, string>
     {
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public RepositoryContext(DbContextOptions options) : base(options)
         {
-            modelBuilder.ApplyConfiguration(new CompanyConfiguration());
-            modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
         }
 
-        public DbSet<Company>? Companies { get; set; }
-        public DbSet<Employee>? Employees { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.ApplyConfiguration(new CompanyConfiguration());
+            builder.ApplyConfiguration(new EmployeeConfiguration());
+            builder.ApplyConfiguration(new RoleConfiguration());
+        }
+
+        public DbSet<Company> Companies { get; set; }
+
+        public DbSet<Employee> Employees { get; set; }
     }
 }

@@ -75,6 +75,10 @@ namespace CompanyEmployees
 
             builder.Services.AddHttpContextAccessor();
 
+            builder.Services.AddAuthentication();
+
+            builder.Services.ConfigureIdentity();
+
             WebApplication app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -108,6 +112,8 @@ namespace CompanyEmployees
             _ = app.UseResponseCaching();
 
             _ = app.UseHttpCacheHeaders();
+
+            _ = app.UseAuthentication();
 
             _ = app.UseAuthorization();
 
