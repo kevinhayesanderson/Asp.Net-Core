@@ -1,0 +1,30 @@
+docker pull mcr.microsoft.com/mssql/server:2022-latest
+
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=nYHwQreterDDFFu31Upsfq8nz" `
+   -p 1433:1433 --name sql1 --hostname sql1 `
+   -d `
+   mcr.microsoft.com/mssql/server:2022-latest
+   
+docker exec -it sql1 "bash"
+   
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "nYHwQreterDDFFu31Upsfq8nz"
+
+CREATE DATABASE CompanyEmployee;
+SELECT Name from sys.databases;
+GO
+
+QUIT
+
+exit
+
+docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd `
+   -S localhost -U SA -P "nYHwQreterDDFFu31Upsfq8nz" `
+   -Q "ALTER LOGIN SA WITH PASSWORD='nYHwQreterDDFFu31Upsfq8nz'"
+
+Server=127.0.0.1,1433;Database=CompanyEmployee;User Id=SA;Password=nYHwQreterDDFFu31Upsfq8nz;Trust Server Certificate=True;
+
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=nYHwQreterDDFFu31Upsfq8nz" -p 1433:1433 --name sql1 --hostname sql1 -d mcr.microsoft.com/mssql/server:2022-latest
+
+
+
+

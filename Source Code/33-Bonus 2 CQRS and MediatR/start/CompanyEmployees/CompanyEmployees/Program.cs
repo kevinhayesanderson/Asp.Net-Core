@@ -16,14 +16,18 @@ builder.Services.ConfigureSqlContext(builder.Configuration);
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
-	options.SuppressModelStateInvalidFilter = true;
+    options.SuppressModelStateInvalidFilter = true;
 });
 
-builder.Services.AddControllers(config => {
-	config.RespectBrowserAcceptHeader = true;
-	config.ReturnHttpNotAcceptable = true;
+builder.Services.AddControllers(config =>
+{
+    config.RespectBrowserAcceptHeader = true;
+    config.ReturnHttpNotAcceptable = true;
 }).AddXmlDataContractSerializerFormatters()
   .AddApplicationPart(typeof(CompanyEmployees.Presentation.AssemblyReference).Assembly);
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Application.AssemblyReference).Assembly));
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
@@ -31,13 +35,13 @@ var logger = app.Services.GetRequiredService<ILoggerManager>();
 app.ConfigureExceptionHandler(logger);
 
 if (app.Environment.IsProduction())
-	app.UseHsts();
+    app.UseHsts();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
-	ForwardedHeaders = ForwardedHeaders.All
+    ForwardedHeaders = ForwardedHeaders.All
 });
 
 app.UseCors("CorsPolicy");
